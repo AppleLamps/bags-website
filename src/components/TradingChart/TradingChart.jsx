@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { createChart, ColorType, CrosshairMode } from 'lightweight-charts'
-import { Card } from '../ui'
 import { TrendingUp, TrendingDown, BarChart3 } from 'lucide-react'
 
 // Generate realistic candlestick data
@@ -39,9 +38,9 @@ const generateVolumeData = (candleData) => {
   return candleData.map((candle, i) => ({
     time: candle.time,
     value: Math.random() * 50000 + 10000,
-    color: candle.close >= candle.open 
-      ? 'rgba(0, 255, 136, 0.5)' 
-      : 'rgba(255, 68, 102, 0.5)',
+    color: candle.close >= candle.open
+      ? 'rgba(34, 197, 94, 0.4)'
+      : 'rgba(239, 68, 68, 0.4)',
   }))
 }
 
@@ -81,16 +80,16 @@ export function TradingChart({
       crosshair: {
         mode: CrosshairMode.Normal,
         vertLine: {
-          color: 'rgba(0, 255, 136, 0.3)',
+          color: 'rgba(34, 197, 94, 0.3)',
           width: 1,
           style: 2,
-          labelBackgroundColor: '#00ff88',
+          labelBackgroundColor: '#22c55e',
         },
         horzLine: {
-          color: 'rgba(0, 255, 136, 0.3)',
+          color: 'rgba(34, 197, 94, 0.3)',
           width: 1,
           style: 2,
-          labelBackgroundColor: '#00ff88',
+          labelBackgroundColor: '#22c55e',
         },
       },
       rightPriceScale: {
@@ -108,12 +107,12 @@ export function TradingChart({
     // Candlestick series
     const candleData = generateCandleData(30)
     const candlestickSeries = chart.addCandlestickSeries({
-      upColor: '#00ff88',
-      downColor: '#ff4466',
-      borderUpColor: '#00ff88',
-      borderDownColor: '#ff4466',
-      wickUpColor: '#00ff88',
-      wickDownColor: '#ff4466',
+      upColor: '#22c55e',
+      downColor: '#ef4444',
+      borderUpColor: '#22c55e',
+      borderDownColor: '#ef4444',
+      wickUpColor: '#22c55e',
+      wickDownColor: '#ef4444',
     })
     candlestickSeries.setData(candleData)
     
@@ -177,7 +176,12 @@ export function TradingChart({
   }
   
   return (
-    <Card variant="glass" padding="lg" radius="2xl">
+    <div style={{
+      padding: '20px',
+      background: 'var(--bg-card)',
+      border: '1px solid var(--border-subtle)',
+      borderRadius: 'var(--radius-xl)',
+    }}>
       {/* Chart Header */}
       <div style={{
         display: 'flex',
@@ -310,6 +314,6 @@ export function TradingChart({
           </span>
         </div>
       </div>
-    </Card>
+    </div>
   )
 }

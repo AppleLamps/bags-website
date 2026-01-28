@@ -1,10 +1,8 @@
-import React, { useState } from 'react'
-import { Search, Plus, Wallet, Menu, X } from 'lucide-react'
-import { Button, IconButton } from '../ui'
+import React from 'react'
+import { Search, Plus } from 'lucide-react'
+import { Button } from '../ui'
 
 export function Header({ walletBalance = 1.05 }) {
-  const [searchQuery, setSearchQuery] = useState('')
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
   
   return (
     <header style={{
@@ -13,8 +11,7 @@ export function Header({ walletBalance = 1.05 }) {
       justifyContent: 'space-between',
       padding: '16px 24px',
       borderBottom: '1px solid var(--border-subtle)',
-      background: 'rgba(10, 10, 15, 0.8)',
-      backdropFilter: 'blur(12px)',
+      background: 'var(--bg-primary)',
       position: 'sticky',
       top: 0,
       zIndex: 100,
@@ -34,14 +31,13 @@ export function Header({ walletBalance = 1.05 }) {
             width: '36px',
             height: '36px',
             borderRadius: '10px',
-            background: 'linear-gradient(135deg, var(--accent) 0%, var(--accent-dim) 100%)',
+            background: 'var(--accent)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             fontWeight: 700,
             fontSize: '18px',
             color: '#000',
-            boxShadow: '0 4px 12px var(--accent-glow)',
           }}>
             $
           </div>
@@ -51,29 +47,10 @@ export function Header({ walletBalance = 1.05 }) {
         <div style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '10px',
-          background: 'var(--bg-elevated)',
-          border: '1px solid var(--border-subtle)',
-          borderRadius: 'var(--radius-md)',
-          padding: '8px 14px',
-          minWidth: '200px',
+          gap: '8px',
+          cursor: 'pointer',
         }}>
-          <Search size={16} color="var(--text-tertiary)" />
-          <input
-            type="text"
-            placeholder="Search tokens..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            style={{
-              background: 'transparent',
-              border: 'none',
-              outline: 'none',
-              color: 'var(--text-primary)',
-              fontSize: '14px',
-              fontFamily: 'var(--font-display)',
-              width: '100%',
-            }}
-          />
+          <Search size={18} color="var(--text-tertiary)" />
         </div>
       </div>
       
@@ -106,41 +83,41 @@ export function Header({ walletBalance = 1.05 }) {
         <div style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '12px',
+          gap: '10px',
           background: 'var(--bg-tertiary)',
-          padding: '8px 16px',
-          borderRadius: 'var(--radius-lg)',
+          padding: '8px 14px',
+          borderRadius: 'var(--radius-full)',
           border: '1px solid var(--border-subtle)',
           marginLeft: '8px',
         }}>
           <div style={{
-            width: '28px',
-            height: '28px',
-            borderRadius: '8px',
+            width: '24px',
+            height: '24px',
+            borderRadius: '6px',
             background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontSize: '12px',
+            fontSize: '10px',
           }}>
             🍏
           </div>
-          <span style={{ 
-            fontWeight: 600, 
-            fontSize: '14px',
+          <span style={{
+            fontWeight: 600,
+            fontSize: '13px',
             color: 'var(--text-primary)',
           }}>
             $LAMPS_APPLE
           </span>
           <span style={{
-            color: 'var(--text-secondary)',
+            color: 'var(--border-medium)',
             fontSize: '14px',
           }}>
             |
           </span>
-          <span style={{ 
-            fontWeight: 600, 
-            fontSize: '14px',
+          <span style={{
+            fontWeight: 600,
+            fontSize: '13px',
             color: 'var(--text-primary)',
           }}>
             {walletBalance} SOL

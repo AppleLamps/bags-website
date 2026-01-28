@@ -49,27 +49,6 @@ export function TokenPage() {
       minHeight: '100vh',
       position: 'relative',
     }}>
-      {/* Background Effects */}
-      <div style={{
-        position: 'fixed',
-        top: '-20%',
-        right: '-10%',
-        width: '60%',
-        height: '60%',
-        background: 'radial-gradient(circle, rgba(0, 255, 136, 0.04) 0%, transparent 60%)',
-        pointerEvents: 'none',
-        zIndex: 0,
-      }} />
-      <div style={{
-        position: 'fixed',
-        bottom: '-20%',
-        left: '-10%',
-        width: '50%',
-        height: '50%',
-        background: 'radial-gradient(circle, rgba(0, 200, 255, 0.03) 0%, transparent 60%)',
-        pointerEvents: 'none',
-        zIndex: 0,
-      }} />
 
       {/* Header */}
       <Header walletBalance={1.05} />
@@ -92,41 +71,40 @@ export function TokenPage() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
             {/* Token Avatar */}
             <div style={{
-              width: '72px',
-              height: '72px',
-              borderRadius: '20px',
-              background: 'linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%)',
-              border: '2px solid var(--border-accent)',
+              width: '64px',
+              height: '64px',
+              borderRadius: '16px',
+              background: 'var(--bg-tertiary)',
+              border: '1px solid var(--border-medium)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: '32px',
-              boxShadow: 'var(--shadow-glow)',
+              fontSize: '28px',
             }}>
               {tokenData.emoji}
             </div>
 
             <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <h1 style={{
-                  fontSize: '32px',
+                  fontSize: '28px',
                   fontWeight: 700,
                   margin: 0,
-                  background: 'linear-gradient(90deg, var(--text-primary) 0%, var(--accent) 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
+                  color: 'var(--text-primary)',
                 }}>
                   {tokenData.name}
                 </h1>
                 <div style={{
-                  width: '22px',
-                  height: '22px',
+                  width: '20px',
+                  height: '20px',
                   borderRadius: '50%',
-                  background: 'linear-gradient(135deg, var(--accent) 0%, var(--accent-dim) 100%)',
+                  background: 'var(--accent)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  fontSize: '12px',
+                  fontSize: '11px',
+                  color: '#000',
+                  fontWeight: 700,
                 }}>
                   ✓
                 </div>
@@ -138,30 +116,28 @@ export function TokenPage() {
           </div>
 
           {/* Earnings Banner */}
-          <Card
-            variant="accent"
-            padding="md"
-            radius="xl"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '32px',
-              background: 'linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 200, 100, 0.05) 100%)',
-            }}
-          >
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '24px',
+            padding: '16px 20px',
+            background: 'var(--bg-card)',
+            border: '1px solid var(--border-accent)',
+            borderRadius: 'var(--radius-xl)',
+          }}>
             <div>
               <p style={{
-                color: 'var(--text-secondary)',
-                fontSize: '12px',
-                margin: '0 0 4px',
+                color: 'var(--text-tertiary)',
+                fontSize: '11px',
+                margin: '0 0 2px',
                 textTransform: 'uppercase',
-                letterSpacing: '1px',
+                letterSpacing: '0.5px',
               }}>
                 Your Earnings
               </p>
               <p style={{
                 color: 'var(--accent)',
-                fontSize: '28px',
+                fontSize: '24px',
                 fontWeight: 700,
                 margin: 0,
                 fontFamily: 'var(--font-mono)',
@@ -170,19 +146,18 @@ export function TokenPage() {
               </p>
             </div>
             <button style={{
-              background: 'linear-gradient(135deg, var(--accent) 0%, var(--accent-dim) 100%)',
+              background: 'var(--accent)',
               border: 'none',
-              borderRadius: 'var(--radius-md)',
-              padding: '14px 28px',
+              borderRadius: 'var(--radius-full)',
+              padding: '10px 20px',
               color: '#000',
-              fontWeight: 700,
-              fontSize: '15px',
+              fontWeight: 600,
+              fontSize: '14px',
               cursor: 'pointer',
-              boxShadow: 'var(--shadow-button)',
             }}>
               Claim Now
             </button>
-          </Card>
+          </div>
         </div>
 
         {/* Main Grid - Chart + Sidebar */}
@@ -204,7 +179,7 @@ export function TokenPage() {
             <div style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: '16px',
+              gap: '12px',
             }}>
               {[
                 {
@@ -226,27 +201,33 @@ export function TokenPage() {
                   change: '+156%',
                 },
               ].map((stat, i) => (
-                <Card key={i} variant="glass" padding="md" radius="xl">
+                <div key={i} style={{
+                  padding: '16px',
+                  background: 'var(--bg-card)',
+                  border: '1px solid var(--border-subtle)',
+                  borderRadius: 'var(--radius-lg)',
+                }}>
                   <div style={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '10px',
-                    marginBottom: '12px',
+                    gap: '8px',
+                    marginBottom: '10px',
                   }}>
                     <div style={{
-                      width: '36px',
-                      height: '36px',
+                      width: '32px',
+                      height: '32px',
                       borderRadius: 'var(--radius-md)',
-                      background: 'var(--accent-subtle)',
+                      background: 'var(--bg-tertiary)',
+                      border: '1px solid var(--border-subtle)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                     }}>
-                      <stat.icon size={18} color="var(--accent)" />
+                      <stat.icon size={16} color="var(--accent)" />
                     </div>
                     <span style={{
-                      color: 'var(--text-secondary)',
-                      fontSize: '13px',
+                      color: 'var(--text-tertiary)',
+                      fontSize: '12px',
                       fontWeight: 500,
                     }}>
                       {stat.label}
@@ -258,7 +239,7 @@ export function TokenPage() {
                     justifyContent: 'space-between',
                   }}>
                     <p style={{
-                      fontSize: '24px',
+                      fontSize: '20px',
                       fontWeight: 700,
                       margin: 0,
                       fontFamily: 'var(--font-mono)',
@@ -267,13 +248,13 @@ export function TokenPage() {
                     </p>
                     <span style={{
                       color: 'var(--positive)',
-                      fontSize: '12px',
+                      fontSize: '11px',
                       fontWeight: 600,
                     }}>
                       {stat.change}
                     </span>
                   </div>
-                </Card>
+                </div>
               ))}
             </div>
           </div>
