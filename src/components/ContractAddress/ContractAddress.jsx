@@ -26,6 +26,15 @@ export function ContractAddress({
       border: '1px solid var(--border-subtle)',
       borderRadius: 'var(--radius-lg)',
       padding: '14px 16px',
+      transition: 'all 0.2s ease',
+    }}
+    onMouseEnter={(e) => {
+      e.currentTarget.style.borderColor = 'var(--border-medium)';
+      e.currentTarget.style.background = 'var(--bg-card-hover)';
+    }}
+    onMouseLeave={(e) => {
+      e.currentTarget.style.borderColor = 'var(--border-subtle)';
+      e.currentTarget.style.background = 'var(--bg-card)';
     }}>
       <code style={{
         color: 'var(--text-primary)',

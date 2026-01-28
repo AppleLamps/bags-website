@@ -3,7 +3,7 @@ import { Search, Plus } from 'lucide-react'
 import { Button } from '../ui'
 
 export function Header({ walletBalance = 1.05 }) {
-  
+
   return (
     <header style={{
       display: 'flex',
@@ -11,7 +11,9 @@ export function Header({ walletBalance = 1.05 }) {
       justifyContent: 'space-between',
       padding: '16px 24px',
       borderBottom: '1px solid var(--border-subtle)',
-      background: 'var(--bg-primary)',
+      background: 'rgba(0, 0, 0, 0.8)',
+      backdropFilter: 'blur(16px)',
+      WebkitBackdropFilter: 'blur(16px)',
       position: 'sticky',
       top: 0,
       zIndex: 100,
@@ -38,6 +40,8 @@ export function Header({ walletBalance = 1.05 }) {
             fontWeight: 700,
             fontSize: '18px',
             color: '#000',
+            boxShadow: '0 0 20px rgba(34, 197, 94, 0.4)',
+            transition: 'all 0.3s ease',
           }}>
             $
           </div>

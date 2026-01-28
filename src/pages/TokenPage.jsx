@@ -63,7 +63,19 @@ export function TokenPage() {
     <div style={{
       minHeight: '100vh',
       position: 'relative',
+      background: 'var(--bg-primary)',
     }}>
+      {/* Gradient Background Overlay */}
+      <div style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        height: '600px',
+        background: 'radial-gradient(ellipse 80% 50% at 50% -20%, rgba(34, 197, 94, 0.12) 0%, transparent 50%)',
+        pointerEvents: 'none',
+        zIndex: 0,
+      }} />
 
       {/* Header */}
       <Header walletBalance={1.05} />
@@ -161,9 +173,11 @@ export function TokenPage() {
             alignItems: 'center',
             gap: '24px',
             padding: '16px 20px',
-            background: 'var(--bg-card)',
+            background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.08) 0%, var(--bg-card) 100%)',
             border: '1px solid var(--border-accent)',
             borderRadius: 'var(--radius-xl)',
+            boxShadow: '0 0 30px rgba(34, 197, 94, 0.1)',
+            animation: 'fadeInScale 0.5s ease-out',
           }}>
             <div>
               <p style={{
@@ -181,6 +195,7 @@ export function TokenPage() {
                 fontWeight: 700,
                 margin: 0,
                 fontFamily: 'var(--font-mono)',
+                textShadow: '0 0 20px rgba(34, 197, 94, 0.4)',
               }}>
                 ${tokenData.earnings.toLocaleString()}
               </p>
@@ -194,6 +209,8 @@ export function TokenPage() {
               fontWeight: 600,
               fontSize: '14px',
               cursor: 'pointer',
+              boxShadow: '0 4px 20px rgba(34, 197, 94, 0.3)',
+              transition: 'all 0.2s ease',
             }}>
               Claim Now
             </button>
@@ -271,11 +288,24 @@ export function TokenPage() {
                   change: '+156%',
                 },
               ].map((stat, i) => (
-                <div key={i} style={{
+                <div key={stat.label} style={{
                   padding: '16px',
                   background: 'var(--bg-card)',
                   border: '1px solid var(--border-subtle)',
                   borderRadius: 'var(--radius-lg)',
+                  transition: 'all 0.3s ease',
+                  cursor: 'default',
+                  animation: `fadeInUp 0.4s ease-out ${i * 0.1}s both`,
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-4px)';
+                  e.currentTarget.style.boxShadow = '0 12px 40px rgba(0, 0, 0, 0.4)';
+                  e.currentTarget.style.borderColor = 'var(--border-medium)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'none';
+                  e.currentTarget.style.borderColor = 'var(--border-subtle)';
                 }}>
                   <div style={{
                     display: 'flex',
@@ -287,8 +317,8 @@ export function TokenPage() {
                       width: '32px',
                       height: '32px',
                       borderRadius: 'var(--radius-md)',
-                      background: 'var(--bg-tertiary)',
-                      border: '1px solid var(--border-subtle)',
+                      background: 'rgba(34, 197, 94, 0.1)',
+                      border: '1px solid rgba(34, 197, 94, 0.2)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -320,6 +350,7 @@ export function TokenPage() {
                       color: 'var(--positive)',
                       fontSize: '11px',
                       fontWeight: 600,
+                      textShadow: '0 0 10px rgba(34, 197, 94, 0.3)',
                     }}>
                       {stat.change}
                     </span>
@@ -339,23 +370,39 @@ export function TokenPage() {
                   label: 'Liquidity',
                   value: `$${(tokenData.liquidity / 1000).toFixed(0)}K`,
                   icon: Droplets,
+                  color: '#3b82f6',
                 },
                 {
                   label: 'FDV',
                   value: `$${(tokenData.fdv / 1000).toFixed(0)}K`,
                   icon: DollarSign,
+                  color: '#f59e0b',
                 },
                 {
                   label: 'Holders',
                   value: tokenData.holders.toString(),
                   icon: Users,
+                  color: '#a855f7',
                 },
               ].map((stat, i) => (
-                <div key={i} style={{
+                <div key={stat.label} style={{
                   padding: '16px',
                   background: 'var(--bg-card)',
                   border: '1px solid var(--border-subtle)',
                   borderRadius: 'var(--radius-lg)',
+                  transition: 'all 0.3s ease',
+                  cursor: 'default',
+                  animation: `fadeInUp 0.4s ease-out ${0.3 + i * 0.1}s both`,
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-4px)';
+                  e.currentTarget.style.boxShadow = '0 12px 40px rgba(0, 0, 0, 0.4)';
+                  e.currentTarget.style.borderColor = 'var(--border-medium)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'none';
+                  e.currentTarget.style.borderColor = 'var(--border-subtle)';
                 }}>
                   <div style={{
                     display: 'flex',
@@ -367,13 +414,13 @@ export function TokenPage() {
                       width: '32px',
                       height: '32px',
                       borderRadius: 'var(--radius-md)',
-                      background: 'var(--bg-tertiary)',
-                      border: '1px solid var(--border-subtle)',
+                      background: `${stat.color}15`,
+                      border: `1px solid ${stat.color}30`,
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                     }}>
-                      <stat.icon size={16} color="var(--accent)" />
+                      <stat.icon size={16} color={stat.color} />
                     </div>
                     <span style={{
                       color: 'var(--text-tertiary)',
