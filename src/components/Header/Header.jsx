@@ -9,7 +9,7 @@ export function Header({ walletBalance = 1.05 }) {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
-      padding: '16px 24px',
+      padding: '12px 16px',
       borderBottom: '1px solid var(--border-subtle)',
       background: 'rgba(0, 0, 0, 0.8)',
       backdropFilter: 'blur(16px)',
@@ -17,28 +17,30 @@ export function Header({ walletBalance = 1.05 }) {
       position: 'sticky',
       top: 0,
       zIndex: 100,
+      gap: '12px',
     }}>
       {/* Logo */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
-        <a 
-          href="/" 
-          style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
+      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <a
+          href="/"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
             gap: '8px',
             textDecoration: 'none',
           }}
         >
           <div style={{
-            width: '36px',
-            height: '36px',
-            borderRadius: '10px',
+            width: '32px',
+            height: '32px',
+            minWidth: '32px',
+            borderRadius: '8px',
             background: 'var(--accent)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             fontWeight: 700,
-            fontSize: '18px',
+            fontSize: '16px',
             color: '#000',
             boxShadow: '0 0 20px rgba(34, 197, 94, 0.4)',
             transition: 'all 0.3s ease',
@@ -46,8 +48,8 @@ export function Header({ walletBalance = 1.05 }) {
             $
           </div>
         </a>
-        
-        {/* Search */}
+
+        {/* Search - Always visible */}
         <div style={{
           display: 'flex',
           alignItems: 'center',
@@ -57,11 +59,11 @@ export function Header({ walletBalance = 1.05 }) {
           <Search size={18} color="var(--text-tertiary)" />
         </div>
       </div>
-      
-      {/* Navigation */}
-      <nav style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <a 
-          href="#" 
+
+      {/* Navigation - Hidden on mobile via CSS */}
+      <nav className="header-nav" style={{ alignItems: 'center', gap: '8px' }}>
+        <a
+          href="#"
           style={{
             color: 'var(--text-secondary)',
             textDecoration: 'none',
@@ -74,60 +76,60 @@ export function Header({ walletBalance = 1.05 }) {
         >
           [how it works]
         </a>
-        
-        <Button 
-          variant="primary" 
+
+        <Button
+          variant="primary"
           size="sm"
           icon={<Plus size={16} />}
         >
           new project
         </Button>
-        
-        {/* Wallet */}
+      </nav>
+
+      {/* Wallet - Always visible with responsive styling */}
+      <div className="header-wallet" style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '8px',
+        background: 'var(--bg-tertiary)',
+        borderRadius: 'var(--radius-full)',
+        border: '1px solid var(--border-subtle)',
+      }}>
         <div style={{
+          width: '24px',
+          height: '24px',
+          minWidth: '24px',
+          borderRadius: '6px',
+          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
           display: 'flex',
           alignItems: 'center',
-          gap: '10px',
-          background: 'var(--bg-tertiary)',
-          padding: '8px 14px',
-          borderRadius: 'var(--radius-full)',
-          border: '1px solid var(--border-subtle)',
-          marginLeft: '8px',
+          justifyContent: 'center',
+          fontSize: '10px',
         }}>
-          <div style={{
-            width: '24px',
-            height: '24px',
-            borderRadius: '6px',
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '10px',
-          }}>
-            🍏
-          </div>
-          <span style={{
-            fontWeight: 600,
-            fontSize: '13px',
-            color: 'var(--text-primary)',
-          }}>
-            $LAMPS_APPLE
-          </span>
-          <span style={{
-            color: 'var(--border-medium)',
-            fontSize: '14px',
-          }}>
-            |
-          </span>
-          <span style={{
-            fontWeight: 600,
-            fontSize: '13px',
-            color: 'var(--text-primary)',
-          }}>
-            {walletBalance} SOL
-          </span>
+          🍏
         </div>
-      </nav>
+        <span className="header-wallet-name" style={{
+          fontWeight: 600,
+          fontSize: '13px',
+          color: 'var(--text-primary)',
+        }}>
+          $LAMPS_APPLE
+        </span>
+        <span className="hide-mobile" style={{
+          color: 'var(--border-medium)',
+          fontSize: '14px',
+        }}>
+          |
+        </span>
+        <span style={{
+          fontWeight: 600,
+          fontSize: '13px',
+          color: 'var(--text-primary)',
+          whiteSpace: 'nowrap',
+        }}>
+          {walletBalance} SOL
+        </span>
+      </div>
     </header>
   )
 }

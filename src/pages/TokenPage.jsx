@@ -81,40 +81,31 @@ export function TokenPage() {
       <Header walletBalance={1.05} />
 
       {/* Main Content */}
-      <main style={{
+      <main className="container-responsive" style={{
         maxWidth: '1400px',
         margin: '0 auto',
-        padding: '24px',
         position: 'relative',
         zIndex: 1,
       }}>
         {/* Token Header with Stats */}
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginBottom: '24px',
+        <div className="token-header" style={{
+          marginBottom: '20px',
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+          <div className="token-header-info">
             {/* Token Avatar */}
-            <div style={{
-              width: '64px',
-              height: '64px',
-              borderRadius: '16px',
+            <div className="token-avatar" style={{
               background: 'var(--bg-tertiary)',
               border: '1px solid var(--border-medium)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: '28px',
             }}>
               {tokenData.emoji}
             </div>
 
-            <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <h1 style={{
-                  fontSize: '28px',
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                <h1 className="token-name" style={{
                   fontWeight: 700,
                   margin: 0,
                   color: 'var(--text-primary)',
@@ -132,6 +123,7 @@ export function TokenPage() {
                   fontSize: '11px',
                   color: '#000',
                   fontWeight: 700,
+                  flexShrink: 0,
                 }}>
                   ✓
                 </div>
@@ -140,26 +132,24 @@ export function TokenPage() {
                 {tokenData.description}
               </p>
               {/* Dual Price Display */}
-              <div style={{ display: 'flex', gap: '16px', marginTop: '8px' }}>
-                <div style={{
-                  padding: '6px 12px',
+              <div className="price-tags" style={{ marginTop: '8px' }}>
+                <div className="price-tag" style={{
                   background: 'var(--bg-tertiary)',
                   borderRadius: 'var(--radius-md)',
                   border: '1px solid var(--border-subtle)',
                 }}>
                   <span style={{ color: 'var(--text-tertiary)', fontSize: '11px', marginRight: '6px' }}>USD</span>
-                  <span style={{ color: 'var(--text-primary)', fontSize: '14px', fontWeight: 600, fontFamily: 'var(--font-mono)' }}>
+                  <span style={{ color: 'var(--text-primary)', fontWeight: 600, fontFamily: 'var(--font-mono)' }}>
                     $0.0₄2033
                   </span>
                 </div>
-                <div style={{
-                  padding: '6px 12px',
+                <div className="price-tag" style={{
                   background: 'var(--bg-tertiary)',
                   borderRadius: 'var(--radius-md)',
                   border: '1px solid var(--border-subtle)',
                 }}>
                   <span style={{ color: 'var(--text-tertiary)', fontSize: '11px', marginRight: '6px' }}>SOL</span>
-                  <span style={{ color: 'var(--text-primary)', fontSize: '14px', fontWeight: 600, fontFamily: 'var(--font-mono)' }}>
+                  <span style={{ color: 'var(--text-primary)', fontWeight: 600, fontFamily: 'var(--font-mono)' }}>
                     0.0₆1606
                   </span>
                 </div>
@@ -168,11 +158,8 @@ export function TokenPage() {
           </div>
 
           {/* Earnings Banner */}
-          <div style={{
+          <div className="earnings-banner" style={{
             display: 'flex',
-            alignItems: 'center',
-            gap: '24px',
-            padding: '16px 20px',
             background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.08) 0%, var(--bg-card) 100%)',
             border: '1px solid var(--border-accent)',
             borderRadius: 'var(--radius-xl)',
@@ -191,7 +178,7 @@ export function TokenPage() {
               </p>
               <p style={{
                 color: 'var(--accent)',
-                fontSize: '24px',
+                fontSize: '22px',
                 fontWeight: 700,
                 margin: 0,
                 fontFamily: 'var(--font-mono)',
@@ -211,6 +198,7 @@ export function TokenPage() {
               cursor: 'pointer',
               boxShadow: '0 4px 20px rgba(34, 197, 94, 0.3)',
               transition: 'all 0.2s ease',
+              whiteSpace: 'nowrap',
             }}>
               Claim Now
             </button>
@@ -218,13 +206,9 @@ export function TokenPage() {
         </div>
 
         {/* Main Grid - Chart + Sidebar */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 380px',
-          gap: '24px',
-        }}>
+        <div className="main-grid">
           {/* Left Column - Chart */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             {/* Trading Chart */}
             <TradingChart
               symbol={tokenData.name}
@@ -233,10 +217,8 @@ export function TokenPage() {
             />
 
             {/* Time-based Price Changes */}
-            <div style={{
-              display: 'flex',
-              gap: '8px',
-              padding: '12px 16px',
+            <div className="time-periods" style={{
+              padding: '12px',
               background: 'var(--bg-card)',
               border: '1px solid var(--border-subtle)',
               borderRadius: 'var(--radius-lg)',
@@ -248,8 +230,7 @@ export function TokenPage() {
                 { label: '24H', value: `${tokenData.priceChange24h}%`, color: tokenData.priceChange24h >= 0 ? 'var(--positive)' : 'var(--negative)', active: true },
               ].map((period, i) => (
                 <div key={i} style={{
-                  flex: 1,
-                  padding: '10px 12px',
+                  padding: '10px 8px',
                   background: period.active ? 'var(--bg-tertiary)' : 'transparent',
                   borderRadius: 'var(--radius-md)',
                   border: period.active ? '1px solid var(--border-accent)' : '1px solid transparent',
@@ -257,17 +238,13 @@ export function TokenPage() {
                   cursor: 'pointer',
                 }}>
                   <div style={{ color: 'var(--text-tertiary)', fontSize: '11px', marginBottom: '4px' }}>{period.label}</div>
-                  <div style={{ color: period.color, fontSize: '14px', fontWeight: 600 }}>{period.value}</div>
+                  <div style={{ color: period.color, fontSize: '13px', fontWeight: 600 }}>{period.value}</div>
                 </div>
               ))}
             </div>
 
             {/* Stats Row */}
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: '12px',
-            }}>
+            <div className="stats-grid">
               {[
                 {
                   label: 'Market Cap',
@@ -289,7 +266,7 @@ export function TokenPage() {
                 },
               ].map((stat, i) => (
                 <div key={stat.label} style={{
-                  padding: '16px',
+                  padding: '14px',
                   background: 'var(--bg-card)',
                   border: '1px solid var(--border-subtle)',
                   borderRadius: 'var(--radius-lg)',
@@ -311,11 +288,11 @@ export function TokenPage() {
                     display: 'flex',
                     alignItems: 'center',
                     gap: '8px',
-                    marginBottom: '10px',
+                    marginBottom: '8px',
                   }}>
                     <div style={{
-                      width: '32px',
-                      height: '32px',
+                      width: '28px',
+                      height: '28px',
                       borderRadius: 'var(--radius-md)',
                       background: 'rgba(34, 197, 94, 0.1)',
                       border: '1px solid rgba(34, 197, 94, 0.2)',
@@ -323,11 +300,11 @@ export function TokenPage() {
                       alignItems: 'center',
                       justifyContent: 'center',
                     }}>
-                      <stat.icon size={16} color="var(--accent)" />
+                      <stat.icon size={14} color="var(--accent)" />
                     </div>
                     <span style={{
                       color: 'var(--text-tertiary)',
-                      fontSize: '12px',
+                      fontSize: '11px',
                       fontWeight: 500,
                     }}>
                       {stat.label}
@@ -339,7 +316,7 @@ export function TokenPage() {
                     justifyContent: 'space-between',
                   }}>
                     <p style={{
-                      fontSize: '20px',
+                      fontSize: '18px',
                       fontWeight: 700,
                       margin: 0,
                       fontFamily: 'var(--font-mono)',
@@ -348,7 +325,7 @@ export function TokenPage() {
                     </p>
                     <span style={{
                       color: 'var(--positive)',
-                      fontSize: '11px',
+                      fontSize: '10px',
                       fontWeight: 600,
                       textShadow: '0 0 10px rgba(34, 197, 94, 0.3)',
                     }}>
@@ -360,11 +337,7 @@ export function TokenPage() {
             </div>
 
             {/* Liquidity/FDV/Holders Row */}
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: '12px',
-            }}>
+            <div className="stats-grid">
               {[
                 {
                   label: 'Liquidity',
@@ -386,7 +359,7 @@ export function TokenPage() {
                 },
               ].map((stat, i) => (
                 <div key={stat.label} style={{
-                  padding: '16px',
+                  padding: '14px',
                   background: 'var(--bg-card)',
                   border: '1px solid var(--border-subtle)',
                   borderRadius: 'var(--radius-lg)',
@@ -408,11 +381,11 @@ export function TokenPage() {
                     display: 'flex',
                     alignItems: 'center',
                     gap: '8px',
-                    marginBottom: '10px',
+                    marginBottom: '8px',
                   }}>
                     <div style={{
-                      width: '32px',
-                      height: '32px',
+                      width: '28px',
+                      height: '28px',
                       borderRadius: 'var(--radius-md)',
                       background: `${stat.color}15`,
                       border: `1px solid ${stat.color}30`,
@@ -420,18 +393,18 @@ export function TokenPage() {
                       alignItems: 'center',
                       justifyContent: 'center',
                     }}>
-                      <stat.icon size={16} color={stat.color} />
+                      <stat.icon size={14} color={stat.color} />
                     </div>
                     <span style={{
                       color: 'var(--text-tertiary)',
-                      fontSize: '12px',
+                      fontSize: '11px',
                       fontWeight: 500,
                     }}>
                       {stat.label}
                     </span>
                   </div>
                   <p style={{
-                    fontSize: '20px',
+                    fontSize: '18px',
                     fontWeight: 700,
                     margin: 0,
                     fontFamily: 'var(--font-mono)',
@@ -444,7 +417,7 @@ export function TokenPage() {
 
             {/* Buy/Sell Activity Section */}
             <div style={{
-              padding: '16px',
+              padding: '14px',
               background: 'var(--bg-card)',
               border: '1px solid var(--border-subtle)',
               borderRadius: 'var(--radius-lg)',
@@ -453,60 +426,52 @@ export function TokenPage() {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '8px',
-                marginBottom: '16px',
+                marginBottom: '14px',
               }}>
                 <ArrowUpDown size={16} color="var(--accent)" />
                 <span style={{ color: 'var(--text-primary)', fontSize: '14px', fontWeight: 600 }}>Trading Activity</span>
               </div>
 
               {/* Transaction Stats */}
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(3, 1fr)',
-                gap: '12px',
-                marginBottom: '16px',
-              }}>
+              <div className="trading-activity-grid" style={{ marginBottom: '14px' }}>
                 <div style={{ textAlign: 'center' }}>
-                  <div style={{ color: 'var(--text-tertiary)', fontSize: '11px', marginBottom: '4px' }}>TXNS</div>
-                  <div style={{ color: 'var(--text-primary)', fontSize: '18px', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>{tokenData.txns}</div>
+                  <div style={{ color: 'var(--text-tertiary)', fontSize: '10px', marginBottom: '4px' }}>TXNS</div>
+                  <div style={{ color: 'var(--text-primary)', fontSize: '16px', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>{tokenData.txns}</div>
                 </div>
                 <div style={{ textAlign: 'center' }}>
-                  <div style={{ color: 'var(--text-tertiary)', fontSize: '11px', marginBottom: '4px' }}>BUYS</div>
-                  <div style={{ color: 'var(--positive)', fontSize: '18px', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>{tokenData.buys}</div>
+                  <div style={{ color: 'var(--text-tertiary)', fontSize: '10px', marginBottom: '4px' }}>BUYS</div>
+                  <div style={{ color: 'var(--positive)', fontSize: '16px', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>{tokenData.buys}</div>
                 </div>
                 <div style={{ textAlign: 'center' }}>
-                  <div style={{ color: 'var(--text-tertiary)', fontSize: '11px', marginBottom: '4px' }}>SELLS</div>
-                  <div style={{ color: 'var(--negative)', fontSize: '18px', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>{tokenData.sells}</div>
+                  <div style={{ color: 'var(--text-tertiary)', fontSize: '10px', marginBottom: '4px' }}>SELLS</div>
+                  <div style={{ color: 'var(--negative)', fontSize: '16px', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>{tokenData.sells}</div>
                 </div>
               </div>
 
               {/* Volume Breakdown */}
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(3, 1fr)',
-                gap: '12px',
-                paddingTop: '16px',
+              <div className="trading-activity-grid" style={{
+                paddingTop: '14px',
                 borderTop: '1px solid var(--border-subtle)',
               }}>
                 <div style={{ textAlign: 'center' }}>
-                  <div style={{ color: 'var(--text-tertiary)', fontSize: '11px', marginBottom: '4px' }}>VOLUME</div>
-                  <div style={{ color: 'var(--text-primary)', fontSize: '16px', fontWeight: 600, fontFamily: 'var(--font-mono)' }}>${(tokenData.volume24h / 1000).toFixed(1)}K</div>
+                  <div style={{ color: 'var(--text-tertiary)', fontSize: '10px', marginBottom: '4px' }}>VOLUME</div>
+                  <div style={{ color: 'var(--text-primary)', fontSize: '14px', fontWeight: 600, fontFamily: 'var(--font-mono)' }}>${(tokenData.volume24h / 1000).toFixed(1)}K</div>
                 </div>
                 <div style={{ textAlign: 'center' }}>
-                  <div style={{ color: 'var(--text-tertiary)', fontSize: '11px', marginBottom: '4px' }}>BUY VOL</div>
-                  <div style={{ color: 'var(--positive)', fontSize: '16px', fontWeight: 600, fontFamily: 'var(--font-mono)' }}>${(tokenData.buyVolume / 1000).toFixed(1)}K</div>
+                  <div style={{ color: 'var(--text-tertiary)', fontSize: '10px', marginBottom: '4px' }}>BUY VOL</div>
+                  <div style={{ color: 'var(--positive)', fontSize: '14px', fontWeight: 600, fontFamily: 'var(--font-mono)' }}>${(tokenData.buyVolume / 1000).toFixed(1)}K</div>
                 </div>
                 <div style={{ textAlign: 'center' }}>
-                  <div style={{ color: 'var(--text-tertiary)', fontSize: '11px', marginBottom: '4px' }}>SELL VOL</div>
-                  <div style={{ color: 'var(--negative)', fontSize: '16px', fontWeight: 600, fontFamily: 'var(--font-mono)' }}>${(tokenData.sellVolume / 1000).toFixed(1)}K</div>
+                  <div style={{ color: 'var(--text-tertiary)', fontSize: '10px', marginBottom: '4px' }}>SELL VOL</div>
+                  <div style={{ color: 'var(--negative)', fontSize: '14px', fontWeight: 600, fontFamily: 'var(--font-mono)' }}>${(tokenData.sellVolume / 1000).toFixed(1)}K</div>
                 </div>
               </div>
 
               {/* Buy/Sell Ratio Bar */}
-              <div style={{ marginTop: '16px' }}>
+              <div style={{ marginTop: '14px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
-                  <span style={{ color: 'var(--text-tertiary)', fontSize: '11px' }}>BUYERS: {tokenData.buyers}</span>
-                  <span style={{ color: 'var(--text-tertiary)', fontSize: '11px' }}>SELLERS: {tokenData.sellers}</span>
+                  <span style={{ color: 'var(--text-tertiary)', fontSize: '10px' }}>BUYERS: {tokenData.buyers}</span>
+                  <span style={{ color: 'var(--text-tertiary)', fontSize: '10px' }}>SELLERS: {tokenData.sellers}</span>
                 </div>
                 <div style={{
                   display: 'flex',
@@ -528,7 +493,7 @@ export function TokenPage() {
           </div>
 
           {/* Right Column - Sidebar */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div className="sidebar">
             {/* Contract Address */}
             <ContractAddress
               address={tokenData.contractAddress}

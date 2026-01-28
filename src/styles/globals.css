@@ -373,3 +373,530 @@ body {
   scrollbar-width: thin;
   scrollbar-color: var(--border-medium) transparent;
 }
+
+/* ===========================================
+   RESPONSIVE DESIGN SYSTEM
+   Mobile-first breakpoints:
+   - Mobile: < 640px
+   - Tablet: 640px - 1024px
+   - Desktop: > 1024px
+   =========================================== */
+
+/* Mobile Layout Utilities */
+.mobile-stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-hidden {
+  display: none;
+}
+
+.desktop-hidden {
+  display: block;
+}
+
+/* Main Layout Grid - Mobile First */
+.main-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Stats Grid - Mobile First (2 columns) */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+/* Photo Grid - Mobile First (2 columns) */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+/* Token Header - Mobile First */
+.token-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.token-header-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.token-avatar {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 12px;
+  font-size: 22px;
+}
+
+.token-name {
+  font-size: 22px;
+}
+
+.earnings-banner {
+  padding: 14px 16px;
+  flex-direction: column;
+  gap: 12px;
+  align-items: stretch;
+}
+
+.earnings-banner-content {
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+/* Price Display - Mobile */
+.price-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.price-tag {
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+/* Chart Component - Mobile */
+.chart-header {
+  flex-direction: column;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.chart-price {
+  font-size: 24px;
+}
+
+.chart-ohlc {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px 12px;
+  font-size: 11px;
+}
+
+.timeframe-selector {
+  align-self: flex-start;
+}
+
+.chart-footer {
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Time Period Selector - Mobile */
+.time-periods {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+/* Sidebar Cards - Full width on mobile */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Trading Activity - Mobile */
+.trading-activity-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+/* Project Updates Tabs - Mobile */
+.project-tabs {
+  display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  gap: 4px;
+  padding-bottom: 4px;
+}
+
+.project-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.project-tab {
+  flex: 0 0 auto;
+  min-width: auto;
+  padding: 10px 14px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* Update Cards - Mobile */
+.update-card {
+  padding: 16px;
+}
+
+.update-header {
+  flex-direction: column;
+  gap: 12px;
+}
+
+.update-images {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 4px;
+}
+
+.update-image-item {
+  width: 80px;
+  height: 80px;
+  min-width: 80px;
+}
+
+.update-actions {
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.github-stats-bar {
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+/* Header - Mobile */
+.header-nav {
+  display: none;
+}
+
+.header-wallet {
+  padding: 6px 10px;
+}
+
+.header-wallet-name {
+  display: none;
+}
+
+/* Roadmap - Mobile */
+.roadmap-header {
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.roadmap-legend {
+  display: none;
+}
+
+.milestone-item {
+  padding: 12px;
+  gap: 12px;
+}
+
+.milestone-badge {
+  display: none;
+}
+
+.milestone-badge-mobile {
+  display: inline-flex;
+  font-size: 10px;
+  padding: 4px 8px;
+}
+
+/* Section spacing - Mobile */
+.section-spacing {
+  margin-top: 32px;
+  padding-top: 24px;
+}
+
+/* GitHub Integration - Mobile */
+.github-header {
+  flex-direction: column;
+  gap: 16px;
+}
+
+.github-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+/* ===========================================
+   TABLET STYLES (640px - 1024px)
+   =========================================== */
+@media (min-width: 640px) {
+  .mobile-hidden {
+    display: block;
+  }
+
+  .main-grid {
+    gap: 20px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .photo-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .token-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .token-avatar {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    border-radius: 14px;
+    font-size: 24px;
+  }
+
+  .token-name {
+    font-size: 24px;
+  }
+
+  .earnings-banner {
+    flex-direction: row;
+    padding: 14px 18px;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .earnings-banner-content {
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .chart-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .chart-price {
+    font-size: 28px;
+  }
+
+  .chart-ohlc {
+    display: flex;
+    gap: 16px;
+    font-size: 12px;
+  }
+
+  .chart-footer {
+    flex-direction: row;
+    gap: 24px;
+  }
+
+  .update-card {
+    padding: 20px;
+  }
+
+  .update-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .update-image-item {
+    width: 100px;
+    height: 100px;
+    min-width: 100px;
+  }
+
+  .github-stats-bar {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .github-stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .header-wallet {
+    padding: 8px 14px;
+  }
+
+  .header-wallet-name {
+    display: inline;
+  }
+
+  .roadmap-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .roadmap-legend {
+    display: flex;
+  }
+
+  .milestone-badge {
+    display: inline-flex;
+  }
+
+  .milestone-badge-mobile {
+    display: none;
+  }
+
+  .section-spacing {
+    margin-top: 40px;
+    padding-top: 28px;
+  }
+}
+
+/* ===========================================
+   DESKTOP STYLES (> 1024px)
+   =========================================== */
+@media (min-width: 1024px) {
+  .desktop-hidden {
+    display: none;
+  }
+
+  .main-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 24px;
+  }
+
+  .token-header-info {
+    gap: 20px;
+  }
+
+  .token-avatar {
+    width: 64px;
+    height: 64px;
+    min-width: 64px;
+    border-radius: 16px;
+    font-size: 28px;
+  }
+
+  .token-name {
+    font-size: 28px;
+  }
+
+  .earnings-banner {
+    padding: 16px 20px;
+    gap: 24px;
+  }
+
+  .price-tags {
+    gap: 16px;
+  }
+
+  .price-tag {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .chart-price {
+    font-size: 32px;
+  }
+
+  .header-nav {
+    display: flex;
+  }
+
+  .section-spacing {
+    margin-top: 48px;
+    padding-top: 32px;
+  }
+}
+
+/* ===========================================
+   UTILITY RESPONSIVE CLASSES
+   =========================================== */
+
+/* Hide on specific breakpoints */
+@media (max-width: 639px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .hide-tablet {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hide-desktop {
+    display: none !important;
+  }
+}
+
+/* Responsive text sizes */
+.text-responsive-lg {
+  font-size: 18px;
+}
+
+.text-responsive-xl {
+  font-size: 22px;
+}
+
+@media (min-width: 640px) {
+  .text-responsive-lg {
+    font-size: 20px;
+  }
+  .text-responsive-xl {
+    font-size: 26px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .text-responsive-lg {
+    font-size: 24px;
+  }
+  .text-responsive-xl {
+    font-size: 32px;
+  }
+}
+
+/* Responsive padding */
+.container-responsive {
+  padding: 12px;
+}
+
+@media (min-width: 640px) {
+  .container-responsive {
+    padding: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-responsive {
+    padding: 24px;
+  }
+}
+
+/* Flex gap responsive */
+.gap-responsive {
+  gap: 12px;
+}
+
+@media (min-width: 640px) {
+  .gap-responsive {
+    gap: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .gap-responsive {
+    gap: 24px;
+  }
+}

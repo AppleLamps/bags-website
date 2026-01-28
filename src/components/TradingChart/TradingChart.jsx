@@ -7,18 +7,18 @@ const generateCandleData = (days = 30) => {
   const data = []
   let basePrice = 0.000018
   const now = new Date()
-  
+
   for (let i = days; i >= 0; i--) {
     const date = new Date(now)
     date.setDate(date.getDate() - i)
-    
+
     const volatility = 0.15
     const change = (Math.random() - 0.48) * volatility
     const open = basePrice
     const close = basePrice * (1 + change)
     const high = Math.max(open, close) * (1 + Math.random() * 0.05)
     const low = Math.min(open, close) * (1 - Math.random() * 0.05)
-    
+
     data.push({
       time: date.toISOString().split('T')[0],
       open,
@@ -26,10 +26,10 @@ const generateCandleData = (days = 30) => {
       low,
       close,
     })
-    
+
     basePrice = close
   }
-  
+
   return data
 }
 
@@ -51,7 +51,7 @@ const timeframes = [
   { label: '1W', value: '1w' },
 ]
 
-export function TradingChart({ 
+export function TradingChart({
   symbol = '$GROKIFY',
   currentPrice = 0.000029,
   priceChange = 61.11,
@@ -59,14 +59,14 @@ export function TradingChart({
   const chartContainerRef = useRef(null)
   const [activeTimeframe, setActiveTimeframe] = useState('1d')
   const [hoveredData, setHoveredData] = useState(null)
-  
+
   useEffect(() => {
     if (!chartContainerRef.current) return
-    
+
     // Track if component is mounted for cleanup
     let isSubscribed = true
     let chart = null
-    
+
     chart = createChart(chartContainerRef.current, {
       layout: {
         background: { type: ColorType.Solid, color: 'transparent' },
@@ -103,7 +103,7 @@ export function TradingChart({
       },
       handleScroll: { vertTouchDrag: false },
     })
-    
+
     // Candlestick series
     const candleData = generateCandleData(30)
     const candlestickSeries = chart.addCandlestickSeries({
@@ -115,7 +115,7 @@ export function TradingChart({
       wickDownColor: '#ef4444',
     })
     candlestickSeries.setData(candleData)
-    
+
     // Volume series
     const volumeData = generateVolumeData(candleData)
     const volumeSeries = chart.addHistogramSeries({
@@ -124,7 +124,7 @@ export function TradingChart({
       scaleMargins: { top: 0.85, bottom: 0 },
     })
     volumeSeries.setData(volumeData)
-    
+
     // Crosshair move handler
     chart.subscribeCrosshairMove((param) => {
       if (!isSubscribed) return
@@ -137,23 +137,26 @@ export function TradingChart({
         setHoveredData(null)
       }
     })
-    
+
     // Fit content
     chart.timeScale().fitContent()
-    
+
     // Handle resize
     const handleResize = () => {
       if (chartContainerRef.current && chart && isSubscribed) {
-        chart.applyOptions({ 
-          width: chartContainerRef.current.clientWidth,
-          height: 320,
+        const width = chartContainerRef.current.clientWidth
+        // Responsive chart height
+        const height = window.innerWidth < 640 ? 260 : 320
+        chart.applyOptions({
+          width,
+          height,
         })
       }
     }
-    
+
     handleResize()
     window.addEventListener('resize', handleResize)
-    
+
     return () => {
       isSubscribed = false
       window.removeEventListener('resize', handleResize)
@@ -167,17 +170,17 @@ export function TradingChart({
       }
     }
   }, [activeTimeframe])
-  
-  const displayData = hoveredData || { 
-    open: currentPrice * 0.95, 
-    high: currentPrice * 1.02, 
-    low: currentPrice * 0.93, 
-    close: currentPrice 
+
+  const displayData = hoveredData || {
+    open: currentPrice * 0.95,
+    high: currentPrice * 1.02,
+    low: currentPrice * 0.93,
+    close: currentPrice
   }
-  
+
   return (
     <div style={{
-      padding: '20px',
+      padding: '16px',
       background: 'linear-gradient(180deg, var(--bg-card) 0%, rgba(13, 13, 13, 0.8) 100%)',
       border: '1px solid var(--border-subtle)',
       borderRadius: 'var(--radius-xl)',
@@ -185,21 +188,19 @@ export function TradingChart({
       animation: 'fadeIn 0.5s ease-out',
     }}>
       {/* Chart Header */}
-      <div style={{
+      <div className="chart-header" style={{
         display: 'flex',
-        alignItems: 'flex-start',
-        justifyContent: 'space-between',
-        marginBottom: '20px',
+        marginBottom: '16px',
       }}>
-        <div>
-          <div style={{ 
-            display: 'flex', 
-            alignItems: 'baseline', 
-            gap: '12px',
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'baseline',
+            gap: '10px',
             marginBottom: '4px',
+            flexWrap: 'wrap',
           }}>
-            <span style={{
-              fontSize: '32px',
+            <span className="chart-price" style={{
               fontWeight: 700,
               fontFamily: 'var(--font-mono)',
               letterSpacing: '-1px',
@@ -214,9 +215,9 @@ export function TradingChart({
               alignItems: 'center',
               gap: '4px',
               color: priceChange >= 0 ? 'var(--positive)' : 'var(--negative)',
-              fontSize: '14px',
+              fontSize: '13px',
               fontWeight: 600,
-              padding: '4px 10px',
+              padding: '4px 8px',
               background: priceChange >= 0
                 ? 'rgba(34, 197, 94, 0.1)'
                 : 'rgba(239, 68, 68, 0.1)',
@@ -225,16 +226,13 @@ export function TradingChart({
                 ? '1px solid rgba(34, 197, 94, 0.2)'
                 : '1px solid rgba(239, 68, 68, 0.2)',
             }}>
-              {priceChange >= 0 ? <TrendingUp size={14} /> : <TrendingDown size={14} />}
+              {priceChange >= 0 ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
               {priceChange >= 0 ? '+' : ''}{priceChange.toFixed(2)}%
             </span>
           </div>
-          
+
           {/* OHLC Data */}
-          <div style={{
-            display: 'flex',
-            gap: '16px',
-            fontSize: '12px',
+          <div className="chart-ohlc" style={{
             color: 'var(--text-secondary)',
             fontFamily: 'var(--font-mono)',
           }}>
@@ -244,9 +242,9 @@ export function TradingChart({
             <span>C: ${displayData.close?.toFixed(6) || '0.000000'}</span>
           </div>
         </div>
-        
+
         {/* Timeframe Selector */}
-        <div style={{
+        <div className="timeframe-selector" style={{
           display: 'flex',
           gap: '4px',
           background: 'var(--bg-elevated)',
@@ -266,12 +264,12 @@ export function TradingChart({
                   ? '1px solid var(--border-accent)'
                   : '1px solid transparent',
                 borderRadius: 'var(--radius-sm)',
-                padding: '8px 14px',
+                padding: '6px 10px',
                 color: activeTimeframe === tf.value
                   ? 'var(--accent)'
                   : 'var(--text-tertiary)',
                 fontWeight: 600,
-                fontSize: '12px',
+                fontSize: '11px',
                 cursor: 'pointer',
                 transition: 'all 0.2s ease',
                 fontFamily: 'var(--font-display)',
@@ -297,48 +295,47 @@ export function TradingChart({
           ))}
         </div>
       </div>
-      
+
       {/* Chart Container */}
-      <div 
+      <div
         ref={chartContainerRef}
         style={{
           width: '100%',
-          height: '320px',
+          height: '260px',
           borderRadius: 'var(--radius-md)',
           overflow: 'hidden',
         }}
       />
-      
+
       {/* Chart Footer - Quick Stats */}
-      <div style={{
+      <div className="chart-footer" style={{
         display: 'flex',
-        gap: '24px',
-        marginTop: '20px',
-        paddingTop: '16px',
+        marginTop: '16px',
+        paddingTop: '14px',
         borderTop: '1px solid var(--border-subtle)',
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
           <BarChart3 size={14} color="var(--text-tertiary)" />
-          <span style={{ fontSize: '12px', color: 'var(--text-tertiary)' }}>
-            24h Vol: 
+          <span style={{ fontSize: '11px', color: 'var(--text-tertiary)' }}>
+            24h Vol:
           </span>
-          <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--text-secondary)' }}>
+          <span style={{ fontSize: '11px', fontWeight: 600, color: 'var(--text-secondary)' }}>
             $10.77K
           </span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span style={{ fontSize: '12px', color: 'var(--text-tertiary)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <span style={{ fontSize: '11px', color: 'var(--text-tertiary)' }}>
             24h High:
           </span>
-          <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--positive)' }}>
+          <span style={{ fontSize: '11px', fontWeight: 600, color: 'var(--positive)' }}>
             $0.000033
           </span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span style={{ fontSize: '12px', color: 'var(--text-tertiary)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <span style={{ fontSize: '11px', color: 'var(--text-tertiary)' }}>
             24h Low:
           </span>
-          <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--negative)' }}>
+          <span style={{ fontSize: '11px', fontWeight: 600, color: 'var(--negative)' }}>
             $0.000018
           </span>
         </div>
