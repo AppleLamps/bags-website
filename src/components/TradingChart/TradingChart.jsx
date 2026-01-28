@@ -178,9 +178,11 @@ export function TradingChart({
   return (
     <div style={{
       padding: '20px',
-      background: 'var(--bg-card)',
+      background: 'linear-gradient(180deg, var(--bg-card) 0%, rgba(13, 13, 13, 0.8) 100%)',
       border: '1px solid var(--border-subtle)',
       borderRadius: 'var(--radius-xl)',
+      boxShadow: '0 4px 24px rgba(0, 0, 0, 0.3)',
+      animation: 'fadeIn 0.5s ease-out',
     }}>
       {/* Chart Header */}
       <div style={{
@@ -196,11 +198,14 @@ export function TradingChart({
             gap: '12px',
             marginBottom: '4px',
           }}>
-            <span style={{ 
-              fontSize: '32px', 
+            <span style={{
+              fontSize: '32px',
               fontWeight: 700,
               fontFamily: 'var(--font-mono)',
               letterSpacing: '-1px',
+              textShadow: priceChange >= 0
+                ? '0 0 20px rgba(34, 197, 94, 0.3)'
+                : '0 0 20px rgba(239, 68, 68, 0.3)',
             }}>
               ${displayData.close?.toFixed(6) || currentPrice.toFixed(6)}
             </span>
@@ -211,6 +216,14 @@ export function TradingChart({
               color: priceChange >= 0 ? 'var(--positive)' : 'var(--negative)',
               fontSize: '14px',
               fontWeight: 600,
+              padding: '4px 10px',
+              background: priceChange >= 0
+                ? 'rgba(34, 197, 94, 0.1)'
+                : 'rgba(239, 68, 68, 0.1)',
+              borderRadius: 'var(--radius-full)',
+              border: priceChange >= 0
+                ? '1px solid rgba(34, 197, 94, 0.2)'
+                : '1px solid rgba(239, 68, 68, 0.2)',
             }}>
               {priceChange >= 0 ? <TrendingUp size={14} /> : <TrendingDown size={14} />}
               {priceChange >= 0 ? '+' : ''}{priceChange.toFixed(2)}%
@@ -239,28 +252,44 @@ export function TradingChart({
           background: 'var(--bg-elevated)',
           padding: '4px',
           borderRadius: 'var(--radius-md)',
+          border: '1px solid var(--border-subtle)',
         }}>
           {timeframes.map((tf) => (
             <button
               key={tf.value}
               onClick={() => setActiveTimeframe(tf.value)}
               style={{
-                background: activeTimeframe === tf.value 
-                  ? 'var(--accent-subtle)' 
+                background: activeTimeframe === tf.value
+                  ? 'linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(34, 197, 94, 0.08) 100%)'
                   : 'transparent',
-                border: activeTimeframe === tf.value 
-                  ? '1px solid var(--border-accent)' 
+                border: activeTimeframe === tf.value
+                  ? '1px solid var(--border-accent)'
                   : '1px solid transparent',
                 borderRadius: 'var(--radius-sm)',
                 padding: '8px 14px',
-                color: activeTimeframe === tf.value 
-                  ? 'var(--accent)' 
+                color: activeTimeframe === tf.value
+                  ? 'var(--accent)'
                   : 'var(--text-tertiary)',
                 fontWeight: 600,
                 fontSize: '12px',
                 cursor: 'pointer',
-                transition: 'all 0.15s ease',
+                transition: 'all 0.2s ease',
                 fontFamily: 'var(--font-display)',
+                boxShadow: activeTimeframe === tf.value
+                  ? '0 0 12px rgba(34, 197, 94, 0.15)'
+                  : 'none',
+              }}
+              onMouseEnter={(e) => {
+                if (activeTimeframe !== tf.value) {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                  e.currentTarget.style.color = 'var(--text-secondary)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (activeTimeframe !== tf.value) {
+                  e.currentTarget.style.background = 'transparent';
+                  e.currentTarget.style.color = 'var(--text-tertiary)';
+                }
               }}
             >
               {tf.label}
