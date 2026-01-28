@@ -99,30 +99,6 @@ const mockPhotos = [
     { id: 6, emoji: '🌐', caption: 'Global Launch', date: 'Dec 28', likes: 203 },
 ]
 
-// Styles object for reusable hover/active states
-const buttonStyles = {
-    base: {
-        display: 'flex',
-        alignItems: 'center',
-        gap: '8px',
-        padding: '12px 20px',
-        background: 'transparent',
-        border: '1px solid var(--border-subtle)',
-        borderRadius: 'var(--radius-lg)',
-        color: 'var(--text-secondary)',
-        fontSize: '14px',
-        fontWeight: 500,
-        cursor: 'pointer',
-        transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
-    },
-    hover: {
-        background: 'var(--accent-subtle)',
-        borderColor: 'var(--border-accent)',
-        color: 'var(--accent)',
-        transform: 'translateY(-1px)',
-    }
-}
-
 export function ProjectUpdates() {
     const [activeTab, setActiveTab] = useState('updates')
     const [hoveredTab, setHoveredTab] = useState(null)
@@ -135,9 +111,7 @@ export function ProjectUpdates() {
     ]
 
     return (
-        <div style={{
-            marginTop: '48px',
-            paddingTop: '32px',
+        <div className="section-spacing" style={{
             borderTop: '1px solid var(--border-subtle)',
         }}>
             {/* Section Header */}
@@ -145,12 +119,14 @@ export function ProjectUpdates() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                marginBottom: '24px',
+                marginBottom: '20px',
+                flexWrap: 'wrap',
+                gap: '12px',
             }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                     <div style={{
-                        width: '40px',
-                        height: '40px',
+                        width: '36px',
+                        height: '36px',
                         borderRadius: 'var(--radius-md)',
                         background: 'var(--bg-tertiary)',
                         border: '1px solid var(--border-subtle)',
@@ -158,11 +134,11 @@ export function ProjectUpdates() {
                         alignItems: 'center',
                         justifyContent: 'center',
                     }}>
-                        <Sparkles size={18} color="var(--accent)" />
+                        <Sparkles size={16} color="var(--accent)" />
                     </div>
                     <div>
                         <h2 style={{
-                            fontSize: '20px',
+                            fontSize: '18px',
                             fontWeight: 700,
                             margin: 0,
                             color: 'var(--text-primary)',
@@ -171,7 +147,7 @@ export function ProjectUpdates() {
                         </h2>
                         <p style={{
                             margin: '2px 0 0',
-                            fontSize: '12px',
+                            fontSize: '11px',
                             color: 'var(--text-tertiary)',
                         }}>
                             Updates, media, and development progress
@@ -182,11 +158,11 @@ export function ProjectUpdates() {
                     display: 'flex',
                     alignItems: 'center',
                     gap: '6px',
-                    padding: '6px 12px',
+                    padding: '5px 10px',
                     background: 'var(--accent-subtle)',
                     border: '1px solid var(--border-accent)',
                     borderRadius: 'var(--radius-full)',
-                    fontSize: '12px',
+                    fontSize: '11px',
                     color: 'var(--accent)',
                     fontWeight: 500,
                 }}>
@@ -196,10 +172,8 @@ export function ProjectUpdates() {
             </div>
 
             {/* Tabs */}
-            <div style={{
-                display: 'flex',
-                gap: '4px',
-                marginBottom: '20px',
+            <div className="project-tabs" style={{
+                marginBottom: '16px',
                 padding: '4px',
                 background: 'var(--bg-card)',
                 borderRadius: 'var(--radius-lg)',
@@ -212,32 +186,30 @@ export function ProjectUpdates() {
                         <button
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id)}
+                            className="project-tab"
                             style={{
-                                flex: 1,
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                gap: '8px',
-                                padding: '12px 16px',
+                                gap: '6px',
                                 background: isActive ? 'var(--bg-tertiary)' : 'transparent',
                                 border: isActive ? '1px solid var(--border-subtle)' : '1px solid transparent',
                                 borderRadius: 'var(--radius-md)',
                                 color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
-                                fontSize: '13px',
                                 fontWeight: isActive ? 600 : 500,
                                 cursor: 'pointer',
                                 transition: 'all 0.15s ease',
                             }}
                         >
-                            <tab.icon size={16} style={{ color: isActive ? tab.color : 'inherit' }} />
+                            <tab.icon size={14} style={{ color: isActive ? tab.color : 'inherit' }} />
                             <span>{tab.label}</span>
                             {tab.count && (
                                 <span style={{
                                     background: isActive ? tab.color : 'var(--bg-tertiary)',
                                     color: isActive ? '#000' : 'var(--text-tertiary)',
-                                    padding: '2px 8px',
+                                    padding: '2px 6px',
                                     borderRadius: 'var(--radius-full)',
-                                    fontSize: '11px',
+                                    fontSize: '10px',
                                     fontWeight: 600,
                                 }}>
                                     {tab.count}
@@ -273,12 +245,13 @@ function UpdatesFeed({ updates }) {
     }
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             {updates.map(update => (
                 <div
                     key={update.id}
                     onMouseEnter={() => setHoveredCard(update.id)}
                     onMouseLeave={() => setHoveredCard(null)}
+                    className="update-card"
                     style={{
                         background: hoveredCard === update.id
                             ? 'rgba(255, 255, 255, 0.03)'
@@ -287,7 +260,6 @@ function UpdatesFeed({ updates }) {
                             ? '1px solid var(--border-medium)'
                             : '1px solid var(--border-subtle)',
                         borderRadius: 'var(--radius-xl)',
-                        padding: '24px',
                         transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                         transform: hoveredCard === update.id ? 'translateY(-2px)' : 'none',
                         boxShadow: hoveredCard === update.id
@@ -296,16 +268,15 @@ function UpdatesFeed({ updates }) {
                     }}
                 >
                     {/* Post Header */}
-                    <div style={{
+                    <div className="update-header" style={{
                         display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'flex-start',
-                        marginBottom: '16px',
+                        marginBottom: '14px',
                     }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flex: 1, minWidth: 0 }}>
                             <div style={{
-                                width: '48px',
-                                height: '48px',
+                                width: '44px',
+                                height: '44px',
+                                minWidth: '44px',
                                 borderRadius: 'var(--radius-lg)',
                                 background: update.type === 'announcement'
                                     ? 'linear-gradient(135deg, #00ff88 0%, #00cc6a 100%)'
@@ -321,20 +292,20 @@ function UpdatesFeed({ updates }) {
                                         ? '0 4px 16px rgba(255, 107, 157, 0.3)'
                                         : '0 4px 16px rgba(108, 92, 231, 0.3)',
                             }}>
-                                {update.type === 'announcement' && <Zap size={22} color="#000" />}
-                                {update.type === 'photo' && <ImageIcon size={22} color="#fff" />}
-                                {update.type === 'github' && <GitBranch size={22} color="#fff" />}
+                                {update.type === 'announcement' && <Zap size={20} color="#000" />}
+                                {update.type === 'photo' && <ImageIcon size={20} color="#fff" />}
+                                {update.type === 'github' && <GitBranch size={20} color="#fff" />}
                             </div>
-                            <div>
+                            <div style={{ flex: 1, minWidth: 0 }}>
                                 <div style={{
                                     display: 'flex',
                                     alignItems: 'center',
-                                    gap: '10px',
+                                    gap: '8px',
                                     flexWrap: 'wrap',
                                 }}>
                                     <h4 style={{
                                         margin: 0,
-                                        fontSize: '17px',
+                                        fontSize: '15px',
                                         fontWeight: 600,
                                         color: 'var(--text-primary)',
                                     }}>
@@ -345,11 +316,11 @@ function UpdatesFeed({ updates }) {
                                             display: 'inline-flex',
                                             alignItems: 'center',
                                             gap: '4px',
-                                            padding: '4px 10px',
+                                            padding: '3px 8px',
                                             background: 'linear-gradient(135deg, rgba(255, 170, 0, 0.2) 0%, rgba(255, 136, 0, 0.1) 100%)',
                                             border: '1px solid rgba(255, 170, 0, 0.3)',
                                             borderRadius: '20px',
-                                            fontSize: '11px',
+                                            fontSize: '10px',
                                             fontWeight: 600,
                                             color: 'var(--warning)',
                                         }}>
@@ -364,7 +335,7 @@ function UpdatesFeed({ updates }) {
                                     marginTop: '4px',
                                 }}>
                                     <span style={{
-                                        fontSize: '13px',
+                                        fontSize: '12px',
                                         fontWeight: 500,
                                         color: 'var(--text-secondary)',
                                     }}>
@@ -372,13 +343,13 @@ function UpdatesFeed({ updates }) {
                                     </span>
                                     <span style={{ color: 'var(--text-muted)' }}>•</span>
                                     <span style={{
-                                        fontSize: '12px',
+                                        fontSize: '11px',
                                         color: 'var(--text-tertiary)',
                                         display: 'flex',
                                         alignItems: 'center',
                                         gap: '4px',
                                     }}>
-                                        <Clock size={12} />
+                                        <Clock size={11} />
                                         {update.date}
                                     </span>
                                 </div>
@@ -392,32 +363,29 @@ function UpdatesFeed({ updates }) {
                             color: 'var(--text-tertiary)',
                             cursor: 'pointer',
                             transition: 'all 0.2s ease',
+                            flexShrink: 0,
                         }}>
-                            <ArrowUpRight size={16} />
+                            <ArrowUpRight size={14} />
                         </button>
                     </div>
 
                     {/* Post Content */}
                     <p style={{
                         color: 'var(--text-secondary)',
-                        fontSize: '15px',
-                        lineHeight: 1.7,
-                        margin: '0 0 20px',
+                        fontSize: '14px',
+                        lineHeight: 1.6,
+                        margin: '0 0 16px',
                     }}>
                         {update.content}
                     </p>
 
                     {/* Photo Grid */}
                     {update.images && (
-                        <div style={{
-                            display: 'flex',
-                            gap: '10px',
-                            marginBottom: '20px',
+                        <div className="update-images" style={{
+                            marginBottom: '16px',
                         }}>
                             {update.images.map((img, i) => (
-                                <div key={i} style={{
-                                    width: '100px',
-                                    height: '100px',
+                                <div key={i} className="update-image-item" style={{
                                     borderRadius: 'var(--radius-lg)',
                                     background: 'linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%)',
                                     border: '1px solid var(--border-subtle)',
@@ -432,43 +400,34 @@ function UpdatesFeed({ updates }) {
                                     overflow: 'hidden',
                                 }}>
                                     <div style={{
-                                        width: '40px',
-                                        height: '40px',
+                                        width: '36px',
+                                        height: '36px',
                                         borderRadius: '50%',
                                         background: 'rgba(255, 255, 255, 0.05)',
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'center',
-                                        marginBottom: '6px',
+                                        marginBottom: '4px',
                                         border: '1px solid rgba(255, 255, 255, 0.1)',
                                     }}>
                                         {img.label.toLowerCase().includes('team') ? (
-                                            <Users size={20} color="var(--text-primary)" />
+                                            <Users size={18} color="var(--text-primary)" />
                                         ) : img.label.toLowerCase().includes('award') ? (
-                                            <Star size={20} color="var(--warning)" fill="currentColor" />
+                                            <Star size={18} color="var(--warning)" fill="currentColor" />
                                         ) : (
-                                            <ImageIcon size={20} color="var(--text-primary)" />
+                                            <ImageIcon size={18} color="var(--text-primary)" />
                                         )}
                                     </div>
                                     <span style={{
-                                        fontSize: '10px',
+                                        fontSize: '9px',
                                         color: 'var(--text-tertiary)',
                                         fontWeight: 500,
                                     }}>
                                         {img.label}
                                     </span>
-                                    <div style={{
-                                        position: 'absolute',
-                                        inset: 0,
-                                        background: 'linear-gradient(135deg, rgba(0,255,136,0.1) 0%, transparent 100%)',
-                                        opacity: 0,
-                                        transition: 'opacity 0.2s ease',
-                                    }} />
                                 </div>
                             ))}
-                            <div style={{
-                                width: '100px',
-                                height: '100px',
+                            <div className="update-image-item" style={{
                                 borderRadius: 'var(--radius-lg)',
                                 background: 'var(--bg-card)',
                                 border: '1px dashed var(--border-medium)',
@@ -480,65 +439,63 @@ function UpdatesFeed({ updates }) {
                                 cursor: 'pointer',
                                 color: 'var(--text-tertiary)',
                             }}>
-                                <span style={{ fontSize: '18px' }}>+12</span>
-                                <span style={{ fontSize: '10px' }}>more</span>
+                                <span style={{ fontSize: '16px' }}>+12</span>
+                                <span style={{ fontSize: '9px' }}>more</span>
                             </div>
                         </div>
                     )}
 
                     {/* GitHub Stats Bar */}
                     {update.commits && (
-                        <div style={{
+                        <div className="github-stats-bar" style={{
                             display: 'flex',
-                            alignItems: 'center',
-                            gap: '20px',
-                            marginBottom: '20px',
-                            padding: '14px 18px',
+                            marginBottom: '16px',
+                            padding: '12px 14px',
                             background: 'linear-gradient(135deg, rgba(108, 92, 231, 0.1) 0%, rgba(162, 155, 254, 0.05) 100%)',
                             border: '1px solid rgba(108, 92, 231, 0.2)',
                             borderRadius: 'var(--radius-lg)',
                         }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                <GitCommit size={16} color="#a29bfe" />
-                                <span style={{ fontSize: '14px', fontWeight: 600 }}>{update.commits}</span>
-                                <span style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>commits</span>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                <GitCommit size={14} color="#a29bfe" />
+                                <span style={{ fontSize: '13px', fontWeight: 600 }}>{update.commits}</span>
+                                <span style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>commits</span>
                             </div>
-                            <div style={{
+                            <div className="hide-mobile" style={{
                                 width: '1px',
                                 height: '20px',
-                                background: 'var(--border-subtle)'
+                                background: 'var(--border-subtle)',
+                                margin: '0 12px',
                             }} />
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                <Users size={16} color="var(--text-tertiary)" />
-                                <span style={{ fontSize: '14px', fontWeight: 600 }}>{update.contributors}</span>
-                                <span style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>contributors</span>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                <Users size={14} color="var(--text-tertiary)" />
+                                <span style={{ fontSize: '13px', fontWeight: 600 }}>{update.contributors}</span>
+                                <span style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>contributors</span>
                             </div>
-                            <button style={{
+                            <button className="hide-mobile" style={{
                                 marginLeft: 'auto',
                                 display: 'flex',
                                 alignItems: 'center',
                                 gap: '6px',
-                                padding: '8px 14px',
+                                padding: '6px 12px',
                                 background: 'rgba(108, 92, 231, 0.2)',
                                 border: 'none',
                                 borderRadius: 'var(--radius-md)',
                                 color: '#a29bfe',
-                                fontSize: '12px',
+                                fontSize: '11px',
                                 fontWeight: 600,
                                 cursor: 'pointer',
                             }}>
-                                <ExternalLink size={12} />
+                                <ExternalLink size={11} />
                                 View Release
                             </button>
                         </div>
                     )}
 
                     {/* Action Bar */}
-                    <div style={{
+                    <div className="update-actions" style={{
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '8px',
-                        paddingTop: '16px',
+                        paddingTop: '14px',
                         borderTop: '1px solid var(--border-subtle)',
                     }}>
                         <button
@@ -546,8 +503,8 @@ function UpdatesFeed({ updates }) {
                             style={{
                                 display: 'flex',
                                 alignItems: 'center',
-                                gap: '8px',
-                                padding: '10px 16px',
+                                gap: '6px',
+                                padding: '8px 12px',
                                 background: likedPosts[update.id]
                                     ? 'rgba(255, 68, 102, 0.1)'
                                     : 'var(--bg-elevated)',
@@ -558,14 +515,14 @@ function UpdatesFeed({ updates }) {
                                 color: likedPosts[update.id]
                                     ? '#ff4466'
                                     : 'var(--text-tertiary)',
-                                fontSize: '13px',
+                                fontSize: '12px',
                                 fontWeight: 500,
                                 cursor: 'pointer',
                                 transition: 'all 0.2s ease',
                             }}
                         >
                             <Heart
-                                size={16}
+                                size={14}
                                 fill={likedPosts[update.id] ? '#ff4466' : 'none'}
                             />
                             {(update.likes || 0) + (likedPosts[update.id] ? 1 : 0)}
@@ -573,37 +530,37 @@ function UpdatesFeed({ updates }) {
                         <button style={{
                             display: 'flex',
                             alignItems: 'center',
-                            gap: '8px',
-                            padding: '10px 16px',
+                            gap: '6px',
+                            padding: '8px 12px',
                             background: 'var(--bg-elevated)',
                             border: '1px solid var(--border-subtle)',
                             borderRadius: 'var(--radius-md)',
                             color: 'var(--text-tertiary)',
-                            fontSize: '13px',
+                            fontSize: '12px',
                             fontWeight: 500,
                             cursor: 'pointer',
                             transition: 'all 0.2s ease',
                         }}>
-                            <MessageCircle size={16} />
+                            <MessageCircle size={14} />
                             {update.comments || 0}
                         </button>
                         <button style={{
                             display: 'flex',
                             alignItems: 'center',
-                            gap: '8px',
-                            padding: '10px 16px',
+                            gap: '6px',
+                            padding: '8px 12px',
                             marginLeft: 'auto',
                             background: 'var(--bg-elevated)',
                             border: '1px solid var(--border-subtle)',
                             borderRadius: 'var(--radius-md)',
                             color: 'var(--text-tertiary)',
-                            fontSize: '13px',
+                            fontSize: '12px',
                             fontWeight: 500,
                             cursor: 'pointer',
                             transition: 'all 0.2s ease',
                         }}>
-                            <Share2 size={16} />
-                            Share
+                            <Share2 size={14} />
+                            <span className="hide-mobile">Share</span>
                         </button>
                     </div>
                 </div>
@@ -614,19 +571,19 @@ function UpdatesFeed({ updates }) {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: '10px',
-                padding: '16px 24px',
+                gap: '8px',
+                padding: '14px 20px',
                 background: 'linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%)',
                 border: '1px solid var(--border-medium)',
                 borderRadius: 'var(--radius-xl)',
                 color: 'var(--text-primary)',
-                fontSize: '14px',
+                fontSize: '13px',
                 fontWeight: 600,
                 cursor: 'pointer',
                 transition: 'all 0.25s ease',
             }}>
                 View All Updates
-                <ChevronRight size={18} />
+                <ChevronRight size={16} />
             </button>
         </div>
     )
@@ -640,16 +597,17 @@ function PhotoGallery({ photos }) {
             {/* Category Pills */}
             <div style={{
                 display: 'flex',
-                gap: '10px',
-                marginBottom: '24px',
+                gap: '8px',
+                marginBottom: '20px',
                 overflowX: 'auto',
                 paddingBottom: '8px',
+                WebkitOverflowScrolling: 'touch',
             }}>
                 {['All', 'Events', 'Team', 'Product', 'Community'].map((cat, i) => (
                     <button
                         key={cat}
                         style={{
-                            padding: '10px 18px',
+                            padding: '8px 14px',
                             background: i === 0
                                 ? 'linear-gradient(135deg, rgba(255, 107, 157, 0.2) 0%, rgba(196, 69, 105, 0.1) 100%)'
                                 : 'var(--bg-elevated)',
@@ -658,7 +616,7 @@ function PhotoGallery({ photos }) {
                                 : '1px solid var(--border-subtle)',
                             borderRadius: 'var(--radius-full)',
                             color: i === 0 ? '#ff6b9d' : 'var(--text-secondary)',
-                            fontSize: '13px',
+                            fontSize: '12px',
                             fontWeight: 600,
                             cursor: 'pointer',
                             whiteSpace: 'nowrap',
@@ -671,11 +629,7 @@ function PhotoGallery({ photos }) {
             </div>
 
             {/* Photo Grid */}
-            <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(3, 1fr)',
-                gap: '16px',
-            }}>
+            <div className="photo-grid">
                 {photos.map(photo => (
                     <div
                         key={photo.id}
@@ -708,11 +662,11 @@ function PhotoGallery({ photos }) {
                             opacity: hoveredPhoto === photo.id ? 1 : 0.7,
                         }}>
                             {photo.caption.toLowerCase().includes('team') || photo.caption.toLowerCase().includes('community') ? (
-                                <Users size={48} strokeWidth={1.5} color="var(--text-secondary)" />
+                                <Users size={40} strokeWidth={1.5} color="var(--text-secondary)" />
                             ) : photo.caption.toLowerCase().includes('launch') || photo.caption.toLowerCase().includes('v2') ? (
-                                <Zap size={48} strokeWidth={1.5} color="var(--text-secondary)" />
+                                <Zap size={40} strokeWidth={1.5} color="var(--text-secondary)" />
                             ) : (
-                                <ImageIcon size={48} strokeWidth={1.5} color="var(--text-secondary)" />
+                                <ImageIcon size={40} strokeWidth={1.5} color="var(--text-secondary)" />
                             )}
                         </div>
 
@@ -726,11 +680,11 @@ function PhotoGallery({ photos }) {
                             display: 'flex',
                             flexDirection: 'column',
                             justifyContent: 'flex-end',
-                            padding: '16px',
+                            padding: '14px',
                         }}>
                             <p style={{
-                                margin: '0 0 8px',
-                                fontSize: '14px',
+                                margin: '0 0 6px',
+                                fontSize: '13px',
                                 fontWeight: 600,
                                 color: 'var(--text-primary)',
                             }}>
@@ -739,20 +693,20 @@ function PhotoGallery({ photos }) {
                             <div style={{
                                 display: 'flex',
                                 alignItems: 'center',
-                                gap: '12px',
+                                gap: '10px',
                             }}>
                                 <span style={{
                                     display: 'flex',
                                     alignItems: 'center',
                                     gap: '4px',
-                                    fontSize: '12px',
+                                    fontSize: '11px',
                                     color: 'var(--text-secondary)',
                                 }}>
-                                    <Heart size={12} fill="#ff6b9d" color="#ff6b9d" />
+                                    <Heart size={11} fill="#ff6b9d" color="#ff6b9d" />
                                     {photo.likes || 0}
                                 </span>
                                 <span style={{
-                                    fontSize: '11px',
+                                    fontSize: '10px',
                                     color: 'var(--text-tertiary)',
                                 }}>
                                     {photo.date || 'Jan 20'}
@@ -766,14 +720,14 @@ function PhotoGallery({ photos }) {
                             bottom: 0,
                             left: 0,
                             right: 0,
-                            padding: '14px',
+                            padding: '12px',
                             background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%)',
                             opacity: hoveredPhoto === photo.id ? 0 : 1,
                             transition: 'opacity 0.3s ease',
                         }}>
                             <p style={{
                                 margin: 0,
-                                fontSize: '12px',
+                                fontSize: '11px',
                                 fontWeight: 500,
                                 color: 'var(--text-primary)',
                                 whiteSpace: 'nowrap',
@@ -791,8 +745,8 @@ function PhotoGallery({ photos }) {
                                 top: '50%',
                                 left: '50%',
                                 transform: 'translate(-50%, -50%)',
-                                width: '48px',
-                                height: '48px',
+                                width: '44px',
+                                height: '44px',
                                 borderRadius: '50%',
                                 background: 'rgba(255, 255, 255, 0.2)',
                                 backdropFilter: 'blur(8px)',
@@ -800,7 +754,7 @@ function PhotoGallery({ photos }) {
                                 alignItems: 'center',
                                 justifyContent: 'center',
                             }}>
-                                <Play size={20} fill="#fff" color="#fff" />
+                                <Play size={18} fill="#fff" color="#fff" />
                             </div>
                         )}
                     </div>
@@ -816,13 +770,13 @@ function PhotoGallery({ photos }) {
                     flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    gap: '12px',
+                    gap: '10px',
                     cursor: 'pointer',
                     transition: 'all 0.2s ease',
                 }}>
                     <div style={{
-                        width: '48px',
-                        height: '48px',
+                        width: '44px',
+                        height: '44px',
                         borderRadius: 'var(--radius-lg)',
                         background: 'rgba(255, 107, 157, 0.1)',
                         border: '1px solid rgba(255, 107, 157, 0.2)',
@@ -830,10 +784,10 @@ function PhotoGallery({ photos }) {
                         alignItems: 'center',
                         justifyContent: 'center',
                     }}>
-                        <ImageIcon size={22} color="#ff6b9d" />
+                        <ImageIcon size={20} color="#ff6b9d" />
                     </div>
                     <span style={{
-                        fontSize: '13px',
+                        fontSize: '12px',
                         fontWeight: 500,
                         color: 'var(--text-tertiary)',
                     }}>
@@ -847,22 +801,22 @@ function PhotoGallery({ photos }) {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: '10px',
+                gap: '8px',
                 width: '100%',
-                marginTop: '24px',
-                padding: '16px',
+                marginTop: '20px',
+                padding: '14px',
                 background: 'linear-gradient(135deg, rgba(255, 107, 157, 0.1) 0%, rgba(196, 69, 105, 0.05) 100%)',
                 border: '1px solid rgba(255, 107, 157, 0.2)',
                 borderRadius: 'var(--radius-xl)',
                 color: '#ff6b9d',
-                fontSize: '14px',
+                fontSize: '13px',
                 fontWeight: 600,
                 cursor: 'pointer',
                 transition: 'all 0.2s ease',
             }}>
-                <ImageIcon size={18} />
+                <ImageIcon size={16} />
                 View Full Gallery
-                <ChevronRight size={16} />
+                <ChevronRight size={14} />
             </button>
         </div>
     )
@@ -872,25 +826,23 @@ function GithubIntegration({ stats }) {
     const [hoveredCommit, setHoveredCommit] = useState(null)
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             {/* Repo Header */}
             <div style={{
-                padding: '24px',
+                padding: '20px',
                 background: 'linear-gradient(135deg, rgba(108, 92, 231, 0.12) 0%, rgba(162, 155, 254, 0.06) 100%)',
                 border: '1px solid rgba(108, 92, 231, 0.25)',
                 borderRadius: 'var(--radius-xl)',
             }}>
-                <div style={{
+                <div className="github-header" style={{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    flexWrap: 'wrap',
-                    gap: '16px',
                 }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
                         <div style={{
-                            width: '56px',
-                            height: '56px',
+                            width: '48px',
+                            height: '48px',
                             borderRadius: 'var(--radius-lg)',
                             background: 'linear-gradient(135deg, #2d333b 0%, #1c2024 100%)',
                             border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -899,33 +851,35 @@ function GithubIntegration({ stats }) {
                             justifyContent: 'center',
                             boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)',
                         }}>
-                            <GitBranch size={26} color="#fff" />
+                            <GitBranch size={22} color="#fff" />
                         </div>
                         <div>
                             <h4 style={{
                                 margin: 0,
-                                fontSize: '18px',
+                                fontSize: '16px',
                                 fontWeight: 700,
                                 fontFamily: 'var(--font-mono)',
+                                wordBreak: 'break-all',
                             }}>
                                 {stats.repo}
                             </h4>
                             <div style={{
                                 display: 'flex',
                                 alignItems: 'center',
-                                gap: '12px',
-                                marginTop: '6px',
+                                gap: '10px',
+                                marginTop: '4px',
+                                flexWrap: 'wrap',
                             }}>
                                 <span style={{
                                     display: 'inline-flex',
                                     alignItems: 'center',
-                                    gap: '6px',
-                                    fontSize: '13px',
+                                    gap: '5px',
+                                    fontSize: '12px',
                                     color: 'var(--text-secondary)',
                                 }}>
                                     <span style={{
-                                        width: '10px',
-                                        height: '10px',
+                                        width: '8px',
+                                        height: '8px',
                                         borderRadius: '50%',
                                         background: '#3178c6',
                                         boxShadow: '0 0 8px rgba(49, 120, 198, 0.5)',
@@ -934,13 +888,13 @@ function GithubIntegration({ stats }) {
                                 </span>
                                 <span style={{ color: 'var(--text-muted)' }}>•</span>
                                 <span style={{
-                                    fontSize: '12px',
+                                    fontSize: '11px',
                                     color: 'var(--text-tertiary)',
                                     display: 'flex',
                                     alignItems: 'center',
                                     gap: '4px',
                                 }}>
-                                    <Clock size={12} />
+                                    <Clock size={11} />
                                     {stats.lastCommit}
                                 </span>
                             </div>
@@ -949,57 +903,55 @@ function GithubIntegration({ stats }) {
                     <button style={{
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '8px',
-                        padding: '12px 20px',
+                        gap: '6px',
+                        padding: '10px 16px',
                         background: 'linear-gradient(135deg, #2d333b 0%, #1c2024 100%)',
                         border: '1px solid rgba(255, 255, 255, 0.1)',
                         borderRadius: 'var(--radius-lg)',
                         color: '#fff',
-                        fontSize: '14px',
+                        fontSize: '13px',
                         fontWeight: 600,
                         cursor: 'pointer',
                         transition: 'all 0.2s ease',
+                        whiteSpace: 'nowrap',
                     }}>
-                        <ExternalLink size={16} />
-                        View on GitHub
+                        <ExternalLink size={14} />
+                        <span className="hide-mobile">View on GitHub</span>
+                        <span className="hide-tablet hide-desktop">GitHub</span>
                     </button>
                 </div>
             </div>
 
             {/* Stats Grid */}
-            <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(3, 1fr)',
-                gap: '16px',
-            }}>
+            <div className="github-stats-grid">
                 {[
                     { icon: Star, label: 'Stars', value: stats.stars.toLocaleString(), color: '#ffaa00', bg: 'rgba(255, 170, 0, 0.1)' },
                     { icon: GitPullRequest, label: 'Forks', value: stats.forks, color: '#00ff88', bg: 'rgba(0, 255, 136, 0.1)' },
                     { icon: MessageCircle, label: 'Open Issues', value: stats.openIssues, color: '#a29bfe', bg: 'rgba(162, 155, 254, 0.1)' },
                 ].map((stat, i) => (
                     <div key={i} style={{
-                        padding: '20px',
+                        padding: '16px',
                         background: stat.bg,
                         border: `1px solid ${stat.color}22`,
                         borderRadius: 'var(--radius-xl)',
                         transition: 'all 0.2s ease',
                     }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                             <div style={{
-                                width: '44px',
-                                height: '44px',
+                                width: '40px',
+                                height: '40px',
                                 borderRadius: 'var(--radius-lg)',
                                 background: `${stat.color}22`,
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
                             }}>
-                                <stat.icon size={20} color={stat.color} />
+                                <stat.icon size={18} color={stat.color} />
                             </div>
                             <div>
                                 <p style={{
                                     margin: 0,
-                                    fontSize: '24px',
+                                    fontSize: '20px',
                                     fontWeight: 700,
                                     color: 'var(--text-primary)',
                                 }}>
@@ -1007,7 +959,7 @@ function GithubIntegration({ stats }) {
                                 </p>
                                 <p style={{
                                     margin: 0,
-                                    fontSize: '12px',
+                                    fontSize: '11px',
                                     color: 'var(--text-tertiary)',
                                     fontWeight: 500,
                                 }}>
@@ -1021,7 +973,7 @@ function GithubIntegration({ stats }) {
 
             {/* Recent Commits */}
             <div style={{
-                padding: '24px',
+                padding: '20px',
                 background: 'rgba(255, 255, 255, 0.015)',
                 border: '1px solid var(--border-subtle)',
                 borderRadius: 'var(--radius-xl)',
@@ -1030,40 +982,42 @@ function GithubIntegration({ stats }) {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    marginBottom: '20px',
+                    marginBottom: '16px',
+                    flexWrap: 'wrap',
+                    gap: '8px',
                 }}>
                     <h4 style={{
                         margin: 0,
-                        fontSize: '15px',
+                        fontSize: '14px',
                         fontWeight: 600,
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '10px',
+                        gap: '8px',
                     }}>
                         <div style={{
-                            width: '32px',
-                            height: '32px',
+                            width: '28px',
+                            height: '28px',
                             borderRadius: 'var(--radius-md)',
                             background: 'rgba(0, 255, 136, 0.1)',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
                         }}>
-                            <GitCommit size={16} color="var(--accent)" />
+                            <GitCommit size={14} color="var(--accent)" />
                         </div>
                         Recent Commits
                     </h4>
                     <span style={{
-                        padding: '6px 12px',
+                        padding: '5px 10px',
                         background: 'var(--bg-tertiary)',
                         borderRadius: 'var(--radius-full)',
-                        fontSize: '12px',
+                        fontSize: '11px',
                         color: 'var(--text-tertiary)',
                     }}>
                         Last 7 days
                     </span>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                     {stats.recentCommits.map((commit, i) => (
                         <div
                             key={i}
@@ -1072,8 +1026,8 @@ function GithubIntegration({ stats }) {
                             style={{
                                 display: 'flex',
                                 alignItems: 'center',
-                                gap: '14px',
-                                padding: '14px 16px',
+                                gap: '12px',
+                                padding: '12px 14px',
                                 background: hoveredCommit === i
                                     ? 'rgba(255, 255, 255, 0.03)'
                                     : 'var(--bg-tertiary)',
@@ -1086,23 +1040,22 @@ function GithubIntegration({ stats }) {
                             }}
                         >
                             <div style={{
-                                width: '36px',
-                                height: '36px',
+                                width: '32px',
+                                height: '32px',
+                                minWidth: '32px',
                                 borderRadius: 'var(--radius-md)',
                                 background: 'linear-gradient(135deg, var(--bg-card) 0%, var(--bg-tertiary) 100%)',
                                 border: '1px solid var(--border-subtle)',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                fontSize: '16px',
-                                flexShrink: 0,
                             }}>
-                                <GitCommit size={18} color="var(--text-secondary)" />
+                                <GitCommit size={16} color="var(--text-secondary)" />
                             </div>
                             <div style={{ flex: 1, minWidth: 0 }}>
                                 <p style={{
                                     margin: 0,
-                                    fontSize: '13px',
+                                    fontSize: '12px',
                                     fontFamily: 'var(--font-mono)',
                                     whiteSpace: 'nowrap',
                                     overflow: 'hidden',
@@ -1117,11 +1070,11 @@ function GithubIntegration({ stats }) {
                                 <div style={{
                                     display: 'flex',
                                     alignItems: 'center',
-                                    gap: '8px',
+                                    gap: '6px',
                                     marginTop: '4px',
                                 }}>
                                     <span style={{
-                                        fontSize: '12px',
+                                        fontSize: '11px',
                                         color: 'var(--accent)',
                                         fontWeight: 500,
                                     }}>
@@ -1129,7 +1082,7 @@ function GithubIntegration({ stats }) {
                                     </span>
                                     <span style={{ color: 'var(--text-muted)' }}>•</span>
                                     <span style={{
-                                        fontSize: '11px',
+                                        fontSize: '10px',
                                         color: 'var(--text-tertiary)',
                                     }}>
                                         {commit.time}
@@ -1137,11 +1090,12 @@ function GithubIntegration({ stats }) {
                                 </div>
                             </div>
                             <ArrowUpRight
-                                size={16}
+                                size={14}
                                 color="var(--text-tertiary)"
                                 style={{
                                     opacity: hoveredCommit === i ? 1 : 0,
                                     transition: 'opacity 0.2s ease',
+                                    flexShrink: 0,
                                 }}
                             />
                         </div>
@@ -1187,22 +1141,20 @@ function Roadmap({ milestones }) {
 
     return (
         <div style={{
-            padding: '28px',
+            padding: '20px',
             background: 'rgba(255, 255, 255, 0.015)',
             border: '1px solid var(--border-subtle)',
             borderRadius: 'var(--radius-xl)',
         }}>
             {/* Header */}
-            <div style={{
+            <div className="roadmap-header" style={{
                 display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                marginBottom: '28px',
+                marginBottom: '24px',
             }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                     <div style={{
-                        width: '44px',
-                        height: '44px',
+                        width: '40px',
+                        height: '40px',
                         borderRadius: 'var(--radius-lg)',
                         background: 'linear-gradient(135deg, rgba(0, 255, 136, 0.2) 0%, rgba(0, 204, 106, 0.1) 100%)',
                         border: '1px solid rgba(0, 255, 136, 0.3)',
@@ -1210,29 +1162,28 @@ function Roadmap({ milestones }) {
                         alignItems: 'center',
                         justifyContent: 'center',
                     }}>
-                        <Target size={22} color="var(--accent)" />
+                        <Target size={20} color="var(--accent)" />
                     </div>
                     <div>
                         <h4 style={{
                             margin: 0,
-                            fontSize: '17px',
+                            fontSize: '16px',
                             fontWeight: 700,
                         }}>
                             Project Roadmap
                         </h4>
                         <p style={{
                             margin: '2px 0 0',
-                            fontSize: '12px',
+                            fontSize: '11px',
                             color: 'var(--text-tertiary)',
                         }}>
                             Track development progress
                         </p>
                     </div>
                 </div>
-                <div style={{
-                    display: 'flex',
+                <div className="roadmap-legend" style={{
                     alignItems: 'center',
-                    gap: '16px',
+                    gap: '14px',
                 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                         <div style={{
@@ -1259,15 +1210,15 @@ function Roadmap({ milestones }) {
                 {/* Timeline line */}
                 <div style={{
                     position: 'absolute',
-                    left: '19px',
-                    top: '40px',
-                    bottom: '40px',
+                    left: '17px',
+                    top: '36px',
+                    bottom: '36px',
                     width: '2px',
                     background: 'linear-gradient(to bottom, var(--accent) 0%, var(--warning) 40%, var(--border-subtle) 70%)',
                     borderRadius: '2px',
                 }} />
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                     {milestones.map((milestone, i) => {
                         const config = statusConfig[milestone.status]
                         return (
@@ -1275,12 +1226,11 @@ function Roadmap({ milestones }) {
                                 key={milestone.id}
                                 onMouseEnter={() => setHoveredMilestone(milestone.id)}
                                 onMouseLeave={() => setHoveredMilestone(null)}
+                                className="milestone-item"
                                 style={{
                                     display: 'flex',
                                     alignItems: 'flex-start',
-                                    gap: '20px',
-                                    padding: '16px',
-                                    marginLeft: '-8px',
+                                    marginLeft: '-6px',
                                     background: hoveredMilestone === milestone.id
                                         ? 'rgba(255, 255, 255, 0.02)'
                                         : 'transparent',
@@ -1290,8 +1240,9 @@ function Roadmap({ milestones }) {
                             >
                                 {/* Status indicator */}
                                 <div style={{
-                                    width: '40px',
-                                    height: '40px',
+                                    width: '36px',
+                                    height: '36px',
+                                    minWidth: '36px',
                                     borderRadius: '50%',
                                     background: config.bg,
                                     border: milestone.status === 'upcoming'
@@ -1307,14 +1258,14 @@ function Roadmap({ milestones }) {
                                     transform: hoveredMilestone === milestone.id ? 'scale(1.1)' : 'scale(1)',
                                 }}>
                                     {milestone.status === 'completed' && (
-                                        <Check size={20} color={config.iconColor} strokeWidth={3} />
+                                        <Check size={18} color={config.iconColor} strokeWidth={3} />
                                     )}
                                     {milestone.status === 'in-progress' && (
-                                        <Clock size={18} color={config.iconColor} />
+                                        <Clock size={16} color={config.iconColor} />
                                     )}
                                     {milestone.status === 'upcoming' && (
                                         <span style={{
-                                            fontSize: '14px',
+                                            fontSize: '13px',
                                             fontWeight: 700,
                                             color: 'var(--text-tertiary)',
                                         }}>
@@ -1323,32 +1274,33 @@ function Roadmap({ milestones }) {
                                     )}
                                 </div>
 
-                                <div style={{ flex: 1 }}>
+                                <div style={{ flex: 1, minWidth: 0 }}>
                                     <div style={{
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'space-between',
-                                        gap: '12px',
-                                        marginBottom: '6px',
+                                        gap: '8px',
+                                        marginBottom: '4px',
+                                        flexWrap: 'wrap',
                                     }}>
                                         <h5 style={{
                                             margin: 0,
-                                            fontSize: '16px',
+                                            fontSize: '14px',
                                             fontWeight: 600,
                                             color: config.textColor,
                                             transition: 'color 0.2s ease',
                                         }}>
                                             {milestone.title}
                                         </h5>
-                                        <span style={{
-                                            display: 'inline-flex',
+                                        {/* Desktop badge */}
+                                        <span className="milestone-badge" style={{
                                             alignItems: 'center',
-                                            gap: '6px',
-                                            padding: '6px 12px',
+                                            gap: '5px',
+                                            padding: '5px 10px',
                                             background: config.badgeBg,
                                             border: `1px solid ${config.badgeBorder}`,
                                             borderRadius: 'var(--radius-full)',
-                                            fontSize: '11px',
+                                            fontSize: '10px',
                                             fontWeight: 600,
                                             color: config.badgeColor,
                                         }}>
@@ -1360,49 +1312,61 @@ function Roadmap({ milestones }) {
                                     <div style={{
                                         display: 'flex',
                                         alignItems: 'center',
-                                        gap: '12px',
+                                        gap: '10px',
+                                        flexWrap: 'wrap',
                                     }}>
                                         <span style={{
-                                            fontSize: '13px',
+                                            fontSize: '12px',
                                             color: 'var(--text-tertiary)',
                                             display: 'flex',
                                             alignItems: 'center',
-                                            gap: '6px',
+                                            gap: '5px',
                                         }}>
-                                            <Calendar size={13} />
+                                            <Calendar size={12} />
                                             {milestone.date}
                                         </span>
+                                        {/* Mobile badge */}
+                                        <span className="milestone-badge-mobile" style={{
+                                            alignItems: 'center',
+                                            gap: '4px',
+                                            background: config.badgeBg,
+                                            border: `1px solid ${config.badgeBorder}`,
+                                            borderRadius: 'var(--radius-full)',
+                                            fontWeight: 600,
+                                            color: config.badgeColor,
+                                        }}>
+                                            {milestone.status === 'completed' && '✓'}
+                                            {milestone.status === 'in-progress' && '⏳'}
+                                            {milestone.status === 'upcoming' && '○'}
+                                        </span>
                                         {milestone.status === 'in-progress' && (
-                                            <>
-                                                <span style={{ color: 'var(--text-muted)' }}>•</span>
+                                            <div style={{
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: '6px',
+                                            }}>
                                                 <div style={{
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    gap: '8px',
+                                                    width: '60px',
+                                                    height: '4px',
+                                                    background: 'var(--bg-tertiary)',
+                                                    borderRadius: '2px',
+                                                    overflow: 'hidden',
                                                 }}>
                                                     <div style={{
-                                                        width: '80px',
-                                                        height: '4px',
-                                                        background: 'var(--bg-tertiary)',
+                                                        width: '65%',
+                                                        height: '100%',
+                                                        background: 'linear-gradient(90deg, #ffaa00, #ff8800)',
                                                         borderRadius: '2px',
-                                                        overflow: 'hidden',
-                                                    }}>
-                                                        <div style={{
-                                                            width: '65%',
-                                                            height: '100%',
-                                                            background: 'linear-gradient(90deg, #ffaa00, #ff8800)',
-                                                            borderRadius: '2px',
-                                                        }} />
-                                                    </div>
-                                                    <span style={{
-                                                        fontSize: '11px',
-                                                        color: 'var(--warning)',
-                                                        fontWeight: 600,
-                                                    }}>
-                                                        65%
-                                                    </span>
+                                                    }} />
                                                 </div>
-                                            </>
+                                                <span style={{
+                                                    fontSize: '10px',
+                                                    color: 'var(--warning)',
+                                                    fontWeight: 600,
+                                                }}>
+                                                    65%
+                                                </span>
+                                            </div>
                                         )}
                                     </div>
                                 </div>
