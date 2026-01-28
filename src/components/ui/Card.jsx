@@ -7,17 +7,20 @@ const variants = {
   },
   elevated: {
     background: 'var(--bg-elevated)',
-    border: '1px solid var(--border-subtle)',
-    boxShadow: 'var(--shadow-card)',
+    border: '1px solid var(--border-medium)',
+    boxShadow: 'var(--shadow-sm)',
   },
   accent: {
-    background: 'var(--accent-subtle)',
+    background: 'var(--bg-card)',
     border: '1px solid var(--border-accent)',
   },
   glass: {
-    background: 'rgba(255, 255, 255, 0.02)',
+    background: 'var(--bg-card)',
     border: '1px solid var(--border-subtle)',
-    backdropFilter: 'blur(12px)',
+  },
+  outlined: {
+    background: 'transparent',
+    border: '1px solid var(--border-medium)',
   },
 }
 

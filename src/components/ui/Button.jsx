@@ -2,19 +2,18 @@ import React, { useState } from 'react'
 
 const variants = {
   primary: {
-    background: 'linear-gradient(135deg, var(--accent) 0%, var(--accent-dim) 100%)',
+    background: 'var(--accent)',
     color: '#000',
     border: 'none',
-    boxShadow: 'var(--shadow-button)',
   },
   secondary: {
-    background: 'var(--bg-elevated)',
+    background: 'var(--bg-tertiary)',
     color: 'var(--text-primary)',
-    border: '1px solid var(--border-subtle)',
+    border: '1px solid var(--border-medium)',
   },
   ghost: {
     background: 'transparent',
-    color: 'var(--text-primary)',
+    color: 'var(--text-secondary)',
     border: '1px solid transparent',
   },
   outline: {
@@ -23,7 +22,7 @@ const variants = {
     border: '1px solid var(--border-medium)',
   },
   accent: {
-    background: 'var(--accent-subtle)',
+    background: 'transparent',
     color: 'var(--accent)',
     border: '1px solid var(--border-accent)',
   },
@@ -33,21 +32,21 @@ const sizes = {
   sm: {
     padding: '8px 16px',
     fontSize: '13px',
-    borderRadius: 'var(--radius-sm)',
+    borderRadius: 'var(--radius-full)',
   },
   md: {
-    padding: '12px 20px',
+    padding: '10px 20px',
     fontSize: '14px',
-    borderRadius: 'var(--radius-md)',
+    borderRadius: 'var(--radius-full)',
   },
   lg: {
-    padding: '16px 28px',
-    fontSize: '15px',
-    borderRadius: 'var(--radius-lg)',
+    padding: '14px 24px',
+    fontSize: '14px',
+    borderRadius: 'var(--radius-full)',
   },
   xl: {
-    padding: '18px 32px',
-    fontSize: '16px',
+    padding: '16px 24px',
+    fontSize: '15px',
     borderRadius: 'var(--radius-lg)',
   },
 }
@@ -81,7 +80,8 @@ export function Button({
     transition: 'all 0.2s ease',
     opacity: disabled ? 0.5 : 1,
     width: fullWidth ? '100%' : 'auto',
-    transform: isPressed ? 'scale(0.98)' : isHovered ? 'translateY(-1px)' : 'none',
+    transform: isPressed ? 'scale(0.98)' : 'none',
+    filter: isHovered && !disabled ? 'brightness(1.1)' : 'none',
     ...style,
   }
 

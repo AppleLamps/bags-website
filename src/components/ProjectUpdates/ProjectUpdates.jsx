@@ -145,135 +145,100 @@ export function ProjectUpdates() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                marginBottom: '28px',
+                marginBottom: '24px',
             }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                     <div style={{
-                        width: '48px',
-                        height: '48px',
-                        borderRadius: 'var(--radius-lg)',
-                        background: 'linear-gradient(135deg, var(--accent-subtle) 0%, rgba(0, 255, 136, 0.05) 100%)',
-                        border: '1px solid var(--border-accent)',
+                        width: '40px',
+                        height: '40px',
+                        borderRadius: 'var(--radius-md)',
+                        background: 'var(--bg-tertiary)',
+                        border: '1px solid var(--border-subtle)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        boxShadow: '0 0 20px rgba(0, 255, 136, 0.1)',
                     }}>
-                        <Sparkles size={22} color="var(--accent)" />
+                        <Sparkles size={18} color="var(--accent)" />
                     </div>
                     <div>
                         <h2 style={{
-                            fontSize: '24px',
+                            fontSize: '20px',
                             fontWeight: 700,
                             margin: 0,
-                            background: 'linear-gradient(90deg, var(--text-primary) 0%, var(--accent) 100%)',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
+                            color: 'var(--text-primary)',
                         }}>
                             Project Hub
                         </h2>
                         <p style={{
-                            margin: '4px 0 0',
-                            fontSize: '13px',
+                            margin: '2px 0 0',
+                            fontSize: '12px',
                             color: 'var(--text-tertiary)',
                         }}>
                             Updates, media, and development progress
                         </p>
                     </div>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <Badge variant="accent" size="md" style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '6px',
-                        padding: '8px 14px',
-                    }}>
-                        <Check size={14} />
-                        Creator Verified
-                    </Badge>
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    padding: '6px 12px',
+                    background: 'var(--accent-subtle)',
+                    border: '1px solid var(--border-accent)',
+                    borderRadius: 'var(--radius-full)',
+                    fontSize: '12px',
+                    color: 'var(--accent)',
+                    fontWeight: 500,
+                }}>
+                    <Check size={12} />
+                    Creator Verified
                 </div>
             </div>
 
-            {/* Tabs - Redesigned */}
+            {/* Tabs */}
             <div style={{
                 display: 'flex',
-                gap: '6px',
-                marginBottom: '24px',
-                padding: '6px',
+                gap: '4px',
+                marginBottom: '20px',
+                padding: '4px',
                 background: 'var(--bg-card)',
-                borderRadius: 'var(--radius-xl)',
+                borderRadius: 'var(--radius-lg)',
                 border: '1px solid var(--border-subtle)',
             }}>
                 {tabs.map(tab => {
                     const isActive = activeTab === tab.id
-                    const isHovered = hoveredTab === tab.id
 
                     return (
                         <button
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id)}
-                            onMouseEnter={() => setHoveredTab(tab.id)}
-                            onMouseLeave={() => setHoveredTab(null)}
                             style={{
                                 flex: 1,
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                gap: '10px',
-                                padding: '14px 20px',
-                                background: isActive
-                                    ? 'linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%)'
-                                    : isHovered
-                                        ? 'var(--bg-elevated)'
-                                        : 'transparent',
-                                border: isActive
-                                    ? '1px solid var(--border-medium)'
-                                    : '1px solid transparent',
-                                borderRadius: 'var(--radius-lg)',
-                                color: isActive
-                                    ? 'var(--text-primary)'
-                                    : isHovered
-                                        ? 'var(--text-primary)'
-                                        : 'var(--text-secondary)',
-                                fontSize: '14px',
+                                gap: '8px',
+                                padding: '12px 16px',
+                                background: isActive ? 'var(--bg-tertiary)' : 'transparent',
+                                border: isActive ? '1px solid var(--border-subtle)' : '1px solid transparent',
+                                borderRadius: 'var(--radius-md)',
+                                color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
+                                fontSize: '13px',
                                 fontWeight: isActive ? 600 : 500,
                                 cursor: 'pointer',
-                                transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
-                                position: 'relative',
-                                overflow: 'hidden',
+                                transition: 'all 0.15s ease',
                             }}
                         >
-                            {isActive && (
-                                <div style={{
-                                    position: 'absolute',
-                                    top: 0,
-                                    left: 0,
-                                    right: 0,
-                                    height: '2px',
-                                    background: `linear-gradient(90deg, transparent 0%, ${tab.color} 50%, transparent 100%)`,
-                                }} />
-                            )}
-                            <tab.icon
-                                size={18}
-                                style={{
-                                    color: isActive ? tab.color : 'inherit',
-                                    transition: 'color 0.2s ease',
-                                }}
-                            />
+                            <tab.icon size={16} style={{ color: isActive ? tab.color : 'inherit' }} />
                             <span>{tab.label}</span>
                             {tab.count && (
                                 <span style={{
-                                    background: isActive
-                                        ? tab.color
-                                        : 'var(--bg-tertiary)',
-                                    color: isActive
-                                        ? '#000'
-                                        : 'var(--text-tertiary)',
-                                    padding: '3px 10px',
-                                    borderRadius: '12px',
-                                    fontSize: '12px',
+                                    background: isActive ? tab.color : 'var(--bg-tertiary)',
+                                    color: isActive ? '#000' : 'var(--text-tertiary)',
+                                    padding: '2px 8px',
+                                    borderRadius: 'var(--radius-full)',
+                                    fontSize: '11px',
                                     fontWeight: 600,
-                                    transition: 'all 0.2s ease',
                                 }}>
                                     {tab.count}
                                 </span>
