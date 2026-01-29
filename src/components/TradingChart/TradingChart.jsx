@@ -180,7 +180,7 @@ export function TradingChart({
 
   return (
     <div style={{
-      padding: '16px',
+      padding: '20px 24px',
       background: 'linear-gradient(180deg, var(--bg-card) 0%, rgba(13, 13, 13, 0.8) 100%)',
       border: '1px solid var(--border-subtle)',
       borderRadius: 'var(--radius-xl)',
@@ -190,17 +190,18 @@ export function TradingChart({
       {/* Chart Header */}
       <div className="chart-header" style={{
         display: 'flex',
-        marginBottom: '16px',
+        marginBottom: '20px',
       }}>
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{
             display: 'flex',
             alignItems: 'baseline',
-            gap: '10px',
-            marginBottom: '4px',
+            gap: '14px',
+            marginBottom: '8px',
             flexWrap: 'wrap',
           }}>
             <span className="chart-price" style={{
+              fontSize: '36px',
               fontWeight: 700,
               fontFamily: 'var(--font-mono)',
               letterSpacing: '-1px',
@@ -213,11 +214,11 @@ export function TradingChart({
             <span style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '4px',
+              gap: '6px',
               color: priceChange >= 0 ? 'var(--positive)' : 'var(--negative)',
-              fontSize: '13px',
+              fontSize: '15px',
               fontWeight: 600,
-              padding: '4px 8px',
+              padding: '6px 12px',
               background: priceChange >= 0
                 ? 'rgba(34, 197, 94, 0.1)'
                 : 'rgba(239, 68, 68, 0.1)',
@@ -226,7 +227,7 @@ export function TradingChart({
                 ? '1px solid rgba(34, 197, 94, 0.2)'
                 : '1px solid rgba(239, 68, 68, 0.2)',
             }}>
-              {priceChange >= 0 ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
+              {priceChange >= 0 ? <TrendingUp size={14} /> : <TrendingDown size={14} />}
               {priceChange >= 0 ? '+' : ''}{priceChange.toFixed(2)}%
             </span>
           </div>
@@ -235,6 +236,7 @@ export function TradingChart({
           <div className="chart-ohlc" style={{
             color: 'var(--text-secondary)',
             fontFamily: 'var(--font-mono)',
+            fontSize: '14px',
           }}>
             <span>O: ${displayData.open?.toFixed(6) || '0.000000'}</span>
             <span>H: ${displayData.high?.toFixed(6) || '0.000000'}</span>
@@ -248,7 +250,7 @@ export function TradingChart({
           display: 'flex',
           gap: '4px',
           background: 'var(--bg-elevated)',
-          padding: '4px',
+          padding: '5px',
           borderRadius: 'var(--radius-md)',
           border: '1px solid var(--border-subtle)',
         }}>
@@ -264,12 +266,12 @@ export function TradingChart({
                   ? '1px solid var(--border-accent)'
                   : '1px solid transparent',
                 borderRadius: 'var(--radius-sm)',
-                padding: '6px 10px',
+                padding: '8px 14px',
                 color: activeTimeframe === tf.value
                   ? 'var(--accent)'
                   : 'var(--text-tertiary)',
                 fontWeight: 600,
-                fontSize: '11px',
+                fontSize: '13px',
                 cursor: 'pointer',
                 transition: 'all 0.2s ease',
                 fontFamily: 'var(--font-display)',
@@ -301,7 +303,7 @@ export function TradingChart({
         ref={chartContainerRef}
         style={{
           width: '100%',
-          height: '260px',
+          height: '280px',
           borderRadius: 'var(--radius-md)',
           overflow: 'hidden',
         }}
@@ -310,32 +312,32 @@ export function TradingChart({
       {/* Chart Footer - Quick Stats */}
       <div className="chart-footer" style={{
         display: 'flex',
-        marginTop: '16px',
-        paddingTop: '14px',
+        marginTop: '20px',
+        paddingTop: '16px',
         borderTop: '1px solid var(--border-subtle)',
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <BarChart3 size={14} color="var(--text-tertiary)" />
-          <span style={{ fontSize: '11px', color: 'var(--text-tertiary)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <BarChart3 size={16} color="var(--text-tertiary)" />
+          <span style={{ fontSize: '14px', color: 'var(--text-tertiary)' }}>
             24h Vol:
           </span>
-          <span style={{ fontSize: '11px', fontWeight: 600, color: 'var(--text-secondary)' }}>
+          <span style={{ fontSize: '14px', fontWeight: 600, color: 'var(--text-secondary)' }}>
             $10.77K
           </span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <span style={{ fontSize: '11px', color: 'var(--text-tertiary)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <span style={{ fontSize: '14px', color: 'var(--text-tertiary)' }}>
             24h High:
           </span>
-          <span style={{ fontSize: '11px', fontWeight: 600, color: 'var(--positive)' }}>
+          <span style={{ fontSize: '14px', fontWeight: 700, color: 'var(--positive)' }}>
             $0.000033
           </span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <span style={{ fontSize: '11px', color: 'var(--text-tertiary)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <span style={{ fontSize: '14px', color: 'var(--text-tertiary)' }}>
             24h Low:
           </span>
-          <span style={{ fontSize: '11px', fontWeight: 600, color: 'var(--negative)' }}>
+          <span style={{ fontSize: '14px', fontWeight: 700, color: 'var(--negative)' }}>
             $0.000018
           </span>
         </div>
