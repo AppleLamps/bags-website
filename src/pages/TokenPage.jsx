@@ -13,7 +13,7 @@ import {
   Card,
   ProjectUpdates,
 } from '../components'
-import { DollarSign, BarChart3, TrendingUp, Activity, Droplets, Users, ArrowUpDown, Cpu } from 'lucide-react'
+import { DollarSign, BarChart3, TrendingUp, Activity, Droplets, Users, ArrowUpDown, Cpu, ExternalLink, Twitter, Globe, Copy, User, Percent } from 'lucide-react'
 
 // Token data
 const tokenData = {
@@ -84,122 +84,111 @@ export function TokenPage() {
         position: 'relative',
         zIndex: 1,
       }}>
-        {/* Token Header with Stats */}
-        <div className="token-header" style={{
-          marginBottom: '24px',
+        {/* Compact Token Header Row */}
+        <div className="token-header-compact" style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '16px',
+          marginBottom: '16px',
+          flexWrap: 'wrap',
         }}>
-          <div className="token-header-info">
-            {/* Token Avatar */}
-            <div className="token-avatar" style={{
+          {/* Left: Token Info */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+            <div style={{
+              width: '48px',
+              height: '48px',
+              borderRadius: '12px',
               background: 'linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%)',
               border: '1px solid var(--border-accent)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-              <Cpu size={28} color="var(--accent)" />
+              <Cpu size={24} color="var(--accent)" />
             </div>
-
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
-                <h1 className="token-name" style={{
-                  fontWeight: 700,
-                  margin: 0,
-                  color: 'var(--text-primary)',
-                  fontSize: '28px',
-                }}>
-                  {tokenData.name}
-                </h1>
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <h1 style={{ fontSize: '22px', fontWeight: 700, margin: 0 }}>{tokenData.name}</h1>
                 <div style={{
-                  width: '24px',
-                  height: '24px',
+                  width: '20px',
+                  height: '20px',
                   borderRadius: '50%',
                   background: 'var(--accent)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  fontSize: '13px',
+                  fontSize: '11px',
                   color: '#000',
                   fontWeight: 700,
-                  flexShrink: 0,
                 }}>
                   ✓
                 </div>
               </div>
-              <p style={{ color: 'var(--text-secondary)', margin: '6px 0 0', fontSize: '15px' }}>
+              <p style={{ color: 'var(--text-secondary)', margin: '2px 0 0', fontSize: '13px' }}>
                 {tokenData.description}
               </p>
-              {/* Dual Price Display */}
-              <div className="price-tags" style={{ marginTop: '12px' }}>
-                <div className="price-tag" style={{
-                  background: 'var(--bg-tertiary)',
-                  borderRadius: 'var(--radius-md)',
-                  border: '1px solid var(--border-subtle)',
-                  padding: '8px 14px',
-                }}>
-                  <span style={{ color: 'var(--text-tertiary)', fontSize: '12px', marginRight: '8px', fontWeight: 500 }}>USD</span>
-                  <span style={{ color: 'var(--text-primary)', fontWeight: 600, fontFamily: 'var(--font-mono)', fontSize: '15px' }}>
-                    $0.0₄2033
-                  </span>
-                </div>
-                <div className="price-tag" style={{
-                  background: 'var(--bg-tertiary)',
-                  borderRadius: 'var(--radius-md)',
-                  border: '1px solid var(--border-subtle)',
-                  padding: '8px 14px',
-                }}>
-                  <span style={{ color: 'var(--text-tertiary)', fontSize: '12px', marginRight: '8px', fontWeight: 500 }}>SOL</span>
-                  <span style={{ color: 'var(--text-primary)', fontWeight: 600, fontFamily: 'var(--font-mono)', fontSize: '15px' }}>
-                    0.0₆1606
-                  </span>
-                </div>
+            </div>
+            {/* Price Tags */}
+            <div style={{ display: 'flex', gap: '8px', marginLeft: '8px' }}>
+              <div style={{
+                background: 'var(--bg-tertiary)',
+                borderRadius: '8px',
+                border: '1px solid var(--border-subtle)',
+                padding: '6px 12px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+              }}>
+                <span style={{ color: 'var(--text-tertiary)', fontSize: '11px', fontWeight: 500 }}>USD</span>
+                <span style={{ color: 'var(--text-primary)', fontWeight: 600, fontFamily: 'var(--font-mono)', fontSize: '13px' }}>
+                  $0.0₄2033
+                </span>
+              </div>
+              <div style={{
+                background: 'var(--bg-tertiary)',
+                borderRadius: '8px',
+                border: '1px solid var(--border-subtle)',
+                padding: '6px 12px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+              }}>
+                <span style={{ color: 'var(--text-tertiary)', fontSize: '11px', fontWeight: 500 }}>SOL</span>
+                <span style={{ color: 'var(--text-primary)', fontWeight: 600, fontFamily: 'var(--font-mono)', fontSize: '13px' }}>
+                  0.0₆1606
+                </span>
               </div>
             </div>
           </div>
 
-          {/* Earnings Banner */}
-          <div className="earnings-banner" style={{
+          {/* Right: Earnings + Claim */}
+          <div style={{
             display: 'flex',
+            alignItems: 'center',
+            gap: '16px',
             background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.08) 0%, var(--bg-card) 100%)',
             border: '1px solid var(--border-accent)',
-            borderRadius: 'var(--radius-xl)',
-            boxShadow: '0 0 30px rgba(34, 197, 94, 0.1)',
-            animation: 'fadeInScale 0.5s ease-out',
-            padding: '18px 22px',
+            borderRadius: '14px',
+            padding: '12px 18px',
           }}>
             <div>
-              <p style={{
-                color: 'var(--text-tertiary)',
-                fontSize: '13px',
-                margin: '0 0 4px',
-                textTransform: 'uppercase',
-                letterSpacing: '0.5px',
-                fontWeight: 500,
-              }}>
+              <p style={{ color: 'var(--text-tertiary)', fontSize: '11px', margin: 0, textTransform: 'uppercase', letterSpacing: '0.5px', fontWeight: 500 }}>
                 Your Earnings
               </p>
-              <p style={{
-                color: 'var(--accent)',
-                fontSize: '28px',
-                fontWeight: 700,
-                margin: 0,
-                fontFamily: 'var(--font-mono)',
-                textShadow: '0 0 20px rgba(34, 197, 94, 0.4)',
-              }}>
+              <p style={{ color: 'var(--accent)', fontSize: '22px', fontWeight: 700, margin: 0, fontFamily: 'var(--font-mono)' }}>
                 ${tokenData.earnings.toLocaleString()}
               </p>
             </div>
             <button style={{
               background: 'var(--accent)',
               border: 'none',
-              borderRadius: 'var(--radius-full)',
-              padding: '14px 28px',
+              borderRadius: '20px',
+              padding: '10px 20px',
               color: '#000',
               fontWeight: 600,
-              fontSize: '16px',
+              fontSize: '14px',
               cursor: 'pointer',
-              boxShadow: '0 4px 20px rgba(34, 197, 94, 0.3)',
-              transition: 'all 0.2s ease',
               whiteSpace: 'nowrap',
             }}>
               Claim Now
@@ -207,10 +196,55 @@ export function TokenPage() {
           </div>
         </div>
 
+        {/* Horizontal Stats Bar */}
+        <div className="stats-bar-horizontal" style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(6, 1fr)',
+          gap: '12px',
+          marginBottom: '16px',
+        }}>
+          {[
+            { label: 'Market Cap', value: `$${(tokenData.marketCap / 1000).toFixed(1)}K`, icon: DollarSign, change: '+12.3%', color: 'var(--accent)' },
+            { label: '24H Volume', value: `$${(tokenData.volume24h / 1000).toFixed(1)}K`, icon: BarChart3, change: '+8.7%', color: 'var(--accent)' },
+            { label: 'Total Earnings', value: `$${tokenData.totalEarnings.toLocaleString()}`, icon: TrendingUp, change: '+156%', color: 'var(--accent)' },
+            { label: 'Liquidity', value: `$${(tokenData.liquidity / 1000).toFixed(0)}K`, icon: Droplets, color: '#3b82f6' },
+            { label: 'FDV', value: `$${(tokenData.fdv / 1000).toFixed(0)}K`, icon: DollarSign, color: '#f59e0b' },
+            { label: 'Holders', value: tokenData.holders.toString(), icon: Users, color: '#a855f7' },
+          ].map((stat, i) => (
+            <div key={stat.label} style={{
+              padding: '14px',
+              background: 'var(--bg-card)',
+              border: '1px solid var(--border-subtle)',
+              borderRadius: '12px',
+              transition: 'all 0.2s ease',
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                <div style={{
+                  width: '28px',
+                  height: '28px',
+                  borderRadius: '8px',
+                  background: `${stat.color}15`,
+                  border: `1px solid ${stat.color}30`,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                  <stat.icon size={14} color={stat.color} />
+                </div>
+                <span style={{ color: 'var(--text-tertiary)', fontSize: '11px', fontWeight: 500 }}>{stat.label}</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+                <span style={{ fontSize: '18px', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>{stat.value}</span>
+                {stat.change && <span style={{ color: 'var(--positive)', fontSize: '11px', fontWeight: 600 }}>{stat.change}</span>}
+              </div>
+            </div>
+          ))}
+        </div>
+
         {/* Main Grid - Chart + Sidebar */}
-        <div className="main-grid">
-          {/* Left Column - Chart */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        <div className="main-grid-balanced">
+          {/* Left Column - Chart & Trading */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {/* Trading Chart */}
             <TradingChart
               symbol={tokenData.name}
@@ -220,10 +254,10 @@ export function TokenPage() {
 
             {/* Time-based Price Changes */}
             <div className="time-periods" style={{
-              padding: '16px',
+              padding: '12px',
               background: 'var(--bg-card)',
               border: '1px solid var(--border-subtle)',
-              borderRadius: 'var(--radius-lg)',
+              borderRadius: '12px',
             }}>
               {[
                 { label: '5M', value: 'N/A', color: 'var(--text-tertiary)' },
@@ -232,298 +266,218 @@ export function TokenPage() {
                 { label: '24H', value: `${tokenData.priceChange24h}%`, color: tokenData.priceChange24h >= 0 ? 'var(--positive)' : 'var(--negative)', active: true },
               ].map((period, i) => (
                 <div key={i} style={{
-                  padding: '14px 12px',
+                  padding: '10px 8px',
                   background: period.active ? 'var(--bg-tertiary)' : 'transparent',
-                  borderRadius: 'var(--radius-md)',
+                  borderRadius: '8px',
                   border: period.active ? '1px solid var(--border-accent)' : '1px solid transparent',
                   textAlign: 'center',
                   cursor: 'pointer',
                 }}>
-                  <div style={{ color: 'var(--text-tertiary)', fontSize: '13px', marginBottom: '6px', fontWeight: 500 }}>{period.label}</div>
-                  <div style={{ color: period.color, fontSize: '16px', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>{period.value}</div>
+                  <div style={{ color: 'var(--text-tertiary)', fontSize: '12px', marginBottom: '4px', fontWeight: 500 }}>{period.label}</div>
+                  <div style={{ color: period.color, fontSize: '14px', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>{period.value}</div>
                 </div>
               ))}
             </div>
 
-            {/* Stats Row */}
-            <div className="stats-grid">
-              {[
-                {
-                  label: 'Market Cap',
-                  value: `$${(tokenData.marketCap / 1000).toFixed(2)}K`,
-                  icon: DollarSign,
-                  change: '+12.3%',
-                },
-                {
-                  label: '24H Volume',
-                  value: `$${(tokenData.volume24h / 1000).toFixed(2)}K`,
-                  icon: BarChart3,
-                  change: '+8.7%',
-                },
-                {
-                  label: 'Total Earnings',
-                  value: `$${tokenData.totalEarnings.toLocaleString()}`,
-                  icon: TrendingUp,
-                  change: '+156%',
-                },
-              ].map((stat, i) => (
-                <div key={stat.label} style={{
-                  padding: '18px',
-                  background: 'var(--bg-card)',
-                  border: '1px solid var(--border-subtle)',
-                  borderRadius: 'var(--radius-lg)',
-                  transition: 'all 0.3s ease',
-                  cursor: 'default',
-                  animation: `fadeInUp 0.4s ease-out ${i * 0.1}s both`,
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-4px)';
-                  e.currentTarget.style.boxShadow = '0 12px 40px rgba(0, 0, 0, 0.4)';
-                  e.currentTarget.style.borderColor = 'var(--border-medium)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = 'none';
-                  e.currentTarget.style.borderColor = 'var(--border-subtle)';
-                }}>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '10px',
-                    marginBottom: '12px',
-                  }}>
-                    <div style={{
-                      width: '36px',
-                      height: '36px',
-                      borderRadius: 'var(--radius-md)',
-                      background: 'rgba(34, 197, 94, 0.1)',
-                      border: '1px solid rgba(34, 197, 94, 0.2)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}>
-                      <stat.icon size={18} color="var(--accent)" />
-                    </div>
-                    <span style={{
-                      color: 'var(--text-tertiary)',
-                      fontSize: '13px',
-                      fontWeight: 500,
-                    }}>
-                      {stat.label}
-                    </span>
-                  </div>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'baseline',
-                    justifyContent: 'space-between',
-                  }}>
-                    <p style={{
-                      fontSize: '24px',
-                      fontWeight: 700,
-                      margin: 0,
-                      fontFamily: 'var(--font-mono)',
-                    }}>
-                      {stat.value}
-                    </p>
-                    <span style={{
-                      color: 'var(--positive)',
-                      fontSize: '13px',
-                      fontWeight: 600,
-                      textShadow: '0 0 10px rgba(34, 197, 94, 0.3)',
-                    }}>
-                      {stat.change}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Liquidity/FDV/Holders Row */}
-            <div className="stats-grid">
-              {[
-                {
-                  label: 'Liquidity',
-                  value: `$${(tokenData.liquidity / 1000).toFixed(0)}K`,
-                  icon: Droplets,
-                  color: '#3b82f6',
-                },
-                {
-                  label: 'FDV',
-                  value: `$${(tokenData.fdv / 1000).toFixed(0)}K`,
-                  icon: DollarSign,
-                  color: '#f59e0b',
-                },
-                {
-                  label: 'Holders',
-                  value: tokenData.holders.toString(),
-                  icon: Users,
-                  color: '#a855f7',
-                },
-              ].map((stat, i) => (
-                <div key={stat.label} style={{
-                  padding: '18px',
-                  background: 'var(--bg-card)',
-                  border: '1px solid var(--border-subtle)',
-                  borderRadius: 'var(--radius-lg)',
-                  transition: 'all 0.3s ease',
-                  cursor: 'default',
-                  animation: `fadeInUp 0.4s ease-out ${0.3 + i * 0.1}s both`,
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-4px)';
-                  e.currentTarget.style.boxShadow = '0 12px 40px rgba(0, 0, 0, 0.4)';
-                  e.currentTarget.style.borderColor = 'var(--border-medium)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = 'none';
-                  e.currentTarget.style.borderColor = 'var(--border-subtle)';
-                }}>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '10px',
-                    marginBottom: '12px',
-                  }}>
-                    <div style={{
-                      width: '36px',
-                      height: '36px',
-                      borderRadius: 'var(--radius-md)',
-                      background: `${stat.color}15`,
-                      border: `1px solid ${stat.color}30`,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}>
-                      <stat.icon size={18} color={stat.color} />
-                    </div>
-                    <span style={{
-                      color: 'var(--text-tertiary)',
-                      fontSize: '13px',
-                      fontWeight: 500,
-                    }}>
-                      {stat.label}
-                    </span>
-                  </div>
-                  <p style={{
-                    fontSize: '24px',
-                    fontWeight: 700,
-                    margin: 0,
-                    fontFamily: 'var(--font-mono)',
-                  }}>
-                    {stat.value}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            {/* Buy/Sell Activity Section */}
+            {/* Trading Activity - Compact */}
             <div style={{
-              padding: '20px',
+              padding: '14px',
               background: 'var(--bg-card)',
               border: '1px solid var(--border-subtle)',
-              borderRadius: 'var(--radius-lg)',
+              borderRadius: '12px',
             }}>
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '10px',
-                marginBottom: '20px',
-              }}>
-                <ArrowUpDown size={20} color="var(--accent)" />
-                <span style={{ color: 'var(--text-primary)', fontSize: '16px', fontWeight: 600 }}>Trading Activity</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '14px' }}>
+                <ArrowUpDown size={16} color="var(--accent)" />
+                <span style={{ color: 'var(--text-primary)', fontSize: '14px', fontWeight: 600 }}>Trading Activity</span>
               </div>
 
-              {/* Transaction Stats */}
-              <div className="trading-activity-grid" style={{ marginBottom: '20px' }}>
-                <div style={{ textAlign: 'center', padding: '12px', background: 'var(--bg-tertiary)', borderRadius: 'var(--radius-md)' }}>
-                  <div style={{ color: 'var(--text-tertiary)', fontSize: '12px', marginBottom: '8px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.5px' }}>TXNS</div>
-                  <div style={{ color: 'var(--text-primary)', fontSize: '22px', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>{tokenData.txns}</div>
+              {/* Transaction Stats Row */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '10px', marginBottom: '14px' }}>
+                <div style={{ textAlign: 'center', padding: '10px 6px', background: 'var(--bg-tertiary)', borderRadius: '8px' }}>
+                  <div style={{ color: 'var(--text-tertiary)', fontSize: '10px', marginBottom: '4px', fontWeight: 500, textTransform: 'uppercase' }}>TXNS</div>
+                  <div style={{ color: 'var(--text-primary)', fontSize: '16px', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>{tokenData.txns}</div>
                 </div>
-                <div style={{ textAlign: 'center', padding: '12px', background: 'var(--bg-tertiary)', borderRadius: 'var(--radius-md)' }}>
-                  <div style={{ color: 'var(--text-tertiary)', fontSize: '12px', marginBottom: '8px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.5px' }}>BUYS</div>
-                  <div style={{ color: 'var(--positive)', fontSize: '22px', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>{tokenData.buys}</div>
+                <div style={{ textAlign: 'center', padding: '10px 6px', background: 'var(--bg-tertiary)', borderRadius: '8px' }}>
+                  <div style={{ color: 'var(--text-tertiary)', fontSize: '10px', marginBottom: '4px', fontWeight: 500, textTransform: 'uppercase' }}>BUYS</div>
+                  <div style={{ color: 'var(--positive)', fontSize: '16px', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>{tokenData.buys}</div>
                 </div>
-                <div style={{ textAlign: 'center', padding: '12px', background: 'var(--bg-tertiary)', borderRadius: 'var(--radius-md)' }}>
-                  <div style={{ color: 'var(--text-tertiary)', fontSize: '12px', marginBottom: '8px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.5px' }}>SELLS</div>
-                  <div style={{ color: 'var(--negative)', fontSize: '22px', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>{tokenData.sells}</div>
+                <div style={{ textAlign: 'center', padding: '10px 6px', background: 'var(--bg-tertiary)', borderRadius: '8px' }}>
+                  <div style={{ color: 'var(--text-tertiary)', fontSize: '10px', marginBottom: '4px', fontWeight: 500, textTransform: 'uppercase' }}>SELLS</div>
+                  <div style={{ color: 'var(--negative)', fontSize: '16px', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>{tokenData.sells}</div>
                 </div>
-              </div>
-
-              {/* Volume Breakdown */}
-              <div className="trading-activity-grid" style={{
-                paddingTop: '20px',
-                borderTop: '1px solid var(--border-subtle)',
-              }}>
-                <div style={{ textAlign: 'center', padding: '12px', background: 'var(--bg-tertiary)', borderRadius: 'var(--radius-md)' }}>
-                  <div style={{ color: 'var(--text-tertiary)', fontSize: '12px', marginBottom: '8px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.5px' }}>VOLUME</div>
-                  <div style={{ color: 'var(--text-primary)', fontSize: '18px', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>${(tokenData.volume24h / 1000).toFixed(1)}K</div>
+                <div style={{ textAlign: 'center', padding: '10px 6px', background: 'var(--bg-tertiary)', borderRadius: '8px' }}>
+                  <div style={{ color: 'var(--text-tertiary)', fontSize: '10px', marginBottom: '4px', fontWeight: 500, textTransform: 'uppercase' }}>VOLUME</div>
+                  <div style={{ color: 'var(--text-primary)', fontSize: '16px', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>${(tokenData.volume24h / 1000).toFixed(1)}K</div>
                 </div>
-                <div style={{ textAlign: 'center', padding: '12px', background: 'var(--bg-tertiary)', borderRadius: 'var(--radius-md)' }}>
-                  <div style={{ color: 'var(--text-tertiary)', fontSize: '12px', marginBottom: '8px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.5px' }}>BUY VOL</div>
-                  <div style={{ color: 'var(--positive)', fontSize: '18px', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>${(tokenData.buyVolume / 1000).toFixed(1)}K</div>
+                <div style={{ textAlign: 'center', padding: '10px 6px', background: 'var(--bg-tertiary)', borderRadius: '8px' }}>
+                  <div style={{ color: 'var(--text-tertiary)', fontSize: '10px', marginBottom: '4px', fontWeight: 500, textTransform: 'uppercase' }}>BUY VOL</div>
+                  <div style={{ color: 'var(--positive)', fontSize: '16px', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>${(tokenData.buyVolume / 1000).toFixed(1)}K</div>
                 </div>
-                <div style={{ textAlign: 'center', padding: '12px', background: 'var(--bg-tertiary)', borderRadius: 'var(--radius-md)' }}>
-                  <div style={{ color: 'var(--text-tertiary)', fontSize: '12px', marginBottom: '8px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.5px' }}>SELL VOL</div>
-                  <div style={{ color: 'var(--negative)', fontSize: '18px', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>${(tokenData.sellVolume / 1000).toFixed(1)}K</div>
+                <div style={{ textAlign: 'center', padding: '10px 6px', background: 'var(--bg-tertiary)', borderRadius: '8px' }}>
+                  <div style={{ color: 'var(--text-tertiary)', fontSize: '10px', marginBottom: '4px', fontWeight: 500, textTransform: 'uppercase' }}>SELL VOL</div>
+                  <div style={{ color: 'var(--negative)', fontSize: '16px', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>${(tokenData.sellVolume / 1000).toFixed(1)}K</div>
                 </div>
               </div>
 
               {/* Buy/Sell Ratio Bar */}
-              <div style={{ marginTop: '20px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-                  <span style={{ color: 'var(--positive)', fontSize: '13px', fontWeight: 600 }}>BUYERS: {tokenData.buyers}</span>
-                  <span style={{ color: 'var(--negative)', fontSize: '13px', fontWeight: 600 }}>SELLERS: {tokenData.sellers}</span>
+              <div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+                  <span style={{ color: 'var(--positive)', fontSize: '11px', fontWeight: 600 }}>BUYERS: {tokenData.buyers}</span>
+                  <span style={{ color: 'var(--negative)', fontSize: '11px', fontWeight: 600 }}>SELLERS: {tokenData.sellers}</span>
                 </div>
-                <div style={{
-                  display: 'flex',
-                  height: '10px',
-                  borderRadius: 'var(--radius-full)',
-                  overflow: 'hidden',
-                }}>
-                  <div style={{
-                    width: `${(tokenData.buyers / (tokenData.buyers + tokenData.sellers)) * 100}%`,
-                    background: 'var(--positive)',
-                  }} />
-                  <div style={{
-                    width: `${(tokenData.sellers / (tokenData.buyers + tokenData.sellers)) * 100}%`,
-                    background: 'var(--negative)',
-                  }} />
+                <div style={{ display: 'flex', height: '8px', borderRadius: '4px', overflow: 'hidden' }}>
+                  <div style={{ width: `${(tokenData.buyers / (tokenData.buyers + tokenData.sellers)) * 100}%`, background: 'var(--positive)' }} />
+                  <div style={{ width: `${(tokenData.sellers / (tokenData.buyers + tokenData.sellers)) * 100}%`, background: 'var(--negative)' }} />
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right Column - Sidebar */}
-          <div className="sidebar">
+          {/* Right Column - Sidebar (Sticky) */}
+          <div className="sidebar-sticky">
             {/* Contract Address */}
-            <ContractAddress
-              address={tokenData.contractAddress}
-              shortAddress={tokenData.shortAddress}
-            />
+            <div style={{
+              padding: '14px',
+              background: 'var(--bg-card)',
+              border: '1px solid var(--border-subtle)',
+              borderRadius: '12px',
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <span style={{ color: 'var(--text-primary)', fontSize: '14px', fontFamily: 'var(--font-mono)' }}>{tokenData.shortAddress}</span>
+                <button style={{
+                  background: 'var(--bg-tertiary)',
+                  border: '1px solid var(--border-subtle)',
+                  borderRadius: '8px',
+                  padding: '8px',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                  <Copy size={14} color="var(--text-secondary)" />
+                </button>
+              </div>
+            </div>
 
             {/* Social Links */}
-            <SocialLinks
-              twitterUrl={tokenData.twitterUrl}
-              websiteUrl={tokenData.websiteUrl}
-            />
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+              <a href={tokenData.twitterUrl} target="_blank" rel="noopener noreferrer" style={{
+                padding: '12px',
+                background: 'var(--bg-card)',
+                border: '1px solid var(--border-subtle)',
+                borderRadius: '12px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                textDecoration: 'none',
+                color: 'var(--text-primary)',
+                fontSize: '13px',
+                fontWeight: 500,
+              }}>
+                <ExternalLink size={14} /> twitter
+              </a>
+              <a href={tokenData.websiteUrl} target="_blank" rel="noopener noreferrer" style={{
+                padding: '12px',
+                background: 'var(--bg-card)',
+                border: '1px solid var(--border-subtle)',
+                borderRadius: '12px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                textDecoration: 'none',
+                color: 'var(--text-primary)',
+                fontSize: '13px',
+                fontWeight: 500,
+              }}>
+                <Globe size={14} /> website
+              </a>
+            </div>
 
-            {/* Creator Info */}
-            <CreatorInfo
-              creator={tokenData.creator}
-              royaltiesTo={tokenData.royaltiesTo}
-            />
+            {/* Creator & Royalties */}
+            <div style={{
+              padding: '14px',
+              background: 'var(--bg-card)',
+              border: '1px solid var(--border-subtle)',
+              borderRadius: '12px',
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <User size={14} color="var(--text-tertiary)" />
+                  <span style={{ color: 'var(--text-tertiary)', fontSize: '12px' }}>created by</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span style={{ color: 'var(--text-primary)', fontSize: '13px', fontFamily: 'var(--font-mono)' }}>{tokenData.creator.address}</span>
+                  <span style={{ color: 'var(--text-tertiary)', fontSize: '11px', background: 'var(--bg-tertiary)', padding: '4px 8px', borderRadius: '6px' }}>earns {tokenData.creator.royalty}%</span>
+                </div>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <Percent size={14} color="var(--text-tertiary)" />
+                  <span style={{ color: 'var(--text-tertiary)', fontSize: '12px' }}>royalties to</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span style={{ color: 'var(--accent)', fontSize: '13px', fontWeight: 500 }}>{tokenData.royaltiesTo.name}</span>
+                  <span style={{ color: 'var(--accent)', fontSize: '11px', background: 'rgba(34, 197, 94, 0.1)', border: '1px solid rgba(34, 197, 94, 0.3)', padding: '4px 8px', borderRadius: '6px' }}>earns {tokenData.royaltiesTo.percentage}%</span>
+                </div>
+              </div>
+            </div>
 
-            {/* Earnings */}
-            <EarningsBanner earnings={tokenData.earnings} />
+            {/* Earnings Display */}
+            <div style={{
+              padding: '16px',
+              background: 'var(--bg-card)',
+              border: '1px solid var(--border-subtle)',
+              borderRadius: '12px',
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ color: 'var(--text-tertiary)', fontSize: '12px' }}>earnings</span>
+                <span style={{ color: 'var(--accent)', fontSize: '22px', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>${tokenData.earnings.toLocaleString()}</span>
+              </div>
+            </div>
 
             {/* Buy Buttons */}
-            <BuyButtons />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              <button style={{
+                width: '100%',
+                padding: '14px',
+                background: 'var(--accent)',
+                border: 'none',
+                borderRadius: '12px',
+                color: '#000',
+                fontWeight: 600,
+                fontSize: '14px',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+              }}>
+                <DollarSign size={16} /> Buy on Bags
+              </button>
+              {['Axiom', 'Jupiter', 'Photon'].map(exchange => (
+                <button key={exchange} style={{
+                  width: '100%',
+                  padding: '12px',
+                  background: 'var(--bg-card)',
+                  border: '1px solid var(--border-subtle)',
+                  borderRadius: '12px',
+                  color: 'var(--text-primary)',
+                  fontWeight: 500,
+                  fontSize: '13px',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                }}>
+                  <ExternalLink size={14} /> Buy on {exchange}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
-
-        {/* Project Updates Section */}
-        <ProjectUpdates />
       </main>
     </div>
   )
