@@ -478,6 +478,9 @@ export function TokenPage() {
             </div>
           </div>
         </div>
+
+        {/* Project Updates Section */}
+        <ProjectUpdates />
       </main>
     </div>
   )
