@@ -1,11 +1,11 @@
 import React from 'react'
 import { VerifiedBadge } from '../ui'
+import { Cpu } from 'lucide-react'
 
 export function TokenProfile({
   name = '$GROKIFY',
   description = 'Grokify Prompt',
   imageUrl = null,
-  emoji = '🤖',
   verified = true,
 }) {
   return (
@@ -26,15 +26,14 @@ export function TokenProfile({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        fontSize: '36px',
         boxShadow: 'var(--shadow-glow)',
         marginBottom: '20px',
         position: 'relative',
         overflow: 'hidden',
       }}>
         {imageUrl ? (
-          <img 
-            src={imageUrl} 
+          <img
+            src={imageUrl}
             alt={name}
             style={{
               width: '100%',
@@ -43,7 +42,7 @@ export function TokenProfile({
             }}
           />
         ) : (
-          <span style={{
+          <div style={{
             background: 'linear-gradient(135deg, #1a1a24 0%, #0f0f15 100%)',
             width: '100%',
             height: '100%',
@@ -51,8 +50,8 @@ export function TokenProfile({
             alignItems: 'center',
             justifyContent: 'center',
           }}>
-            {emoji}
-          </span>
+            <Cpu size={36} color="var(--accent)" />
+          </div>
         )}
       </div>
       

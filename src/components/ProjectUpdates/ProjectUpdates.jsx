@@ -37,7 +37,6 @@ const mockUpdates = [
         comments: 42,
         isPinned: true,
         author: 'Core Team',
-        authorAvatar: '🤖',
     },
     {
         id: 2,
@@ -45,15 +44,14 @@ const mockUpdates = [
         date: '1 day ago',
         title: 'Team at ETH Denver',
         images: [
-            { emoji: '🎪', label: 'Booth Setup' },
-            { emoji: '👥', label: 'Team Photo' },
-            { emoji: '🏆', label: 'Award Ceremony' },
+            { label: 'Booth Setup' },
+            { label: 'Team Photo' },
+            { label: 'Award Ceremony' },
         ],
         content: 'Amazing turnout at our booth! Thanks to everyone who stopped by.',
         likes: 189,
         comments: 28,
         author: 'Marketing',
-        authorAvatar: '📣',
     },
     {
         id: 3,
@@ -64,7 +62,6 @@ const mockUpdates = [
         commits: 23,
         contributors: 5,
         author: 'Dev Team',
-        authorAvatar: '💻',
     },
 ]
 
@@ -91,12 +88,12 @@ const mockMilestones = [
 ]
 
 const mockPhotos = [
-    { id: 1, emoji: '🚀', caption: 'Launch Day', date: 'Jan 15', likes: 89 },
-    { id: 2, emoji: '👥', caption: 'Team Meetup', date: 'Jan 12', likes: 67 },
-    { id: 3, emoji: '🏆', caption: 'Hackathon Win', date: 'Jan 8', likes: 124 },
-    { id: 4, emoji: '🎉', caption: 'Community AMA', date: 'Jan 5', likes: 95 },
-    { id: 5, emoji: '💻', caption: 'Dev Sprint', date: 'Jan 3', likes: 54 },
-    { id: 6, emoji: '🌐', caption: 'Global Launch', date: 'Dec 28', likes: 203 },
+    { id: 1, caption: 'Launch Day', date: 'Jan 15', likes: 89 },
+    { id: 2, caption: 'Team Meetup', date: 'Jan 12', likes: 67 },
+    { id: 3, caption: 'Hackathon Win', date: 'Jan 8', likes: 124 },
+    { id: 4, caption: 'Community AMA', date: 'Jan 5', likes: 95 },
+    { id: 5, caption: 'Dev Sprint', date: 'Jan 3', likes: 54 },
+    { id: 6, caption: 'Global Launch', date: 'Dec 28', likes: 203 },
 ]
 
 export function ProjectUpdates() {
@@ -324,7 +321,7 @@ function UpdatesFeed({ updates }) {
                                             fontWeight: 600,
                                             color: 'var(--warning)',
                                         }}>
-                                            📌 Pinned
+                                            Pinned
                                         </span>
                                     )}
                                 </div>
@@ -1304,8 +1301,8 @@ function Roadmap({ milestones }) {
                                             fontWeight: 600,
                                             color: config.badgeColor,
                                         }}>
-                                            {milestone.status === 'completed' && '✓ Completed'}
-                                            {milestone.status === 'in-progress' && '⏳ In Progress'}
+                                            {milestone.status === 'completed' && 'Completed'}
+                                            {milestone.status === 'in-progress' && 'In Progress'}
                                             {milestone.status === 'upcoming' && 'Upcoming'}
                                         </span>
                                     </div>
@@ -1335,9 +1332,9 @@ function Roadmap({ milestones }) {
                                             fontWeight: 600,
                                             color: config.badgeColor,
                                         }}>
-                                            {milestone.status === 'completed' && '✓'}
-                                            {milestone.status === 'in-progress' && '⏳'}
-                                            {milestone.status === 'upcoming' && '○'}
+                                            {milestone.status === 'completed' && 'Done'}
+                                            {milestone.status === 'in-progress' && 'WIP'}
+                                            {milestone.status === 'upcoming' && 'Soon'}
                                         </span>
                                         {milestone.status === 'in-progress' && (
                                             <div style={{
