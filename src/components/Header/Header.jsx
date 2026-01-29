@@ -1,5 +1,5 @@
 import React from 'react'
-import { Search, Plus } from 'lucide-react'
+import { Search, Plus, Wallet } from 'lucide-react'
 import { Button } from '../ui'
 
 export function Header({ walletBalance = 1.05 }) {
@@ -90,23 +90,23 @@ export function Header({ walletBalance = 1.05 }) {
       <div className="header-wallet" style={{
         display: 'flex',
         alignItems: 'center',
-        gap: '8px',
+        gap: '10px',
         background: 'var(--bg-tertiary)',
         borderRadius: 'var(--radius-full)',
         border: '1px solid var(--border-subtle)',
       }}>
         <div style={{
-          width: '24px',
-          height: '24px',
-          minWidth: '24px',
-          borderRadius: '6px',
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          width: '26px',
+          height: '26px',
+          minWidth: '26px',
+          borderRadius: '8px',
+          background: 'rgba(34, 197, 94, 0.15)',
+          border: '1px solid rgba(34, 197, 94, 0.25)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          fontSize: '10px',
         }}>
-          🍏
+          <Wallet size={14} color="var(--accent)" />
         </div>
         <span className="header-wallet-name" style={{
           fontWeight: 600,

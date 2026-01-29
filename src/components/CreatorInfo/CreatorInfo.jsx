@@ -1,16 +1,14 @@
 import React from 'react'
-import { X } from 'lucide-react'
+import { User, Coins } from 'lucide-react'
 
 export function CreatorInfo({
   creator = {
     address: '9BFF...TK4X',
     royalty: 0,
-    avatar: null,
   },
   royaltiesTo = {
     name: 'LAMPS_APPLE',
     percentage: 100,
-    avatar: '🍏',
   },
 }) {
   return (
@@ -39,16 +37,16 @@ export function CreatorInfo({
           </p>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <div style={{
-              width: '20px',
-              height: '20px',
-              borderRadius: '4px',
+              width: '22px',
+              height: '22px',
+              borderRadius: '6px',
               background: 'var(--bg-tertiary)',
+              border: '1px solid var(--border-subtle)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: '10px',
             }}>
-              {creator.avatar || '👤'}
+              <User size={12} color="var(--text-secondary)" />
             </div>
             <code style={{
               color: 'var(--text-primary)',
@@ -92,16 +90,16 @@ export function CreatorInfo({
           </p>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <div style={{
-              width: '20px',
-              height: '20px',
-              borderRadius: '4px',
-              background: 'var(--bg-tertiary)',
+              width: '22px',
+              height: '22px',
+              borderRadius: '6px',
+              background: 'rgba(34, 197, 94, 0.1)',
+              border: '1px solid rgba(34, 197, 94, 0.2)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: '10px',
             }}>
-              {royaltiesTo.avatar}
+              <Coins size={12} color="var(--accent)" />
             </div>
             <span style={{
               color: 'var(--accent)',
@@ -110,7 +108,6 @@ export function CreatorInfo({
             }}>
               {royaltiesTo.name}
             </span>
-            <X size={12} color="var(--text-tertiary)" />
           </div>
         </div>
         <span style={{

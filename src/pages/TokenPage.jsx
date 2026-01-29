@@ -13,14 +13,13 @@ import {
   Card,
   ProjectUpdates,
 } from '../components'
-import { DollarSign, BarChart3, TrendingUp, Activity, Droplets, Users, ArrowUpDown } from 'lucide-react'
+import { DollarSign, BarChart3, TrendingUp, Activity, Droplets, Users, ArrowUpDown, Cpu } from 'lucide-react'
 
 // Token data
 const tokenData = {
   name: '$GROKIFY',
   description: 'Grokify Prompt',
   verified: true,
-  emoji: '🤖',
   contractAddress: '8F2F7Jk9mNpQrStUvWxYz1AbCdEfGhIjKlMnOpQrStUvWxYz1BAGS',
   shortAddress: '8F2F...BAGS',
   marketCap: 20000,
@@ -47,12 +46,10 @@ const tokenData = {
   creator: {
     address: '9BFF...TK4X',
     royalty: 0,
-    avatar: '👤',
   },
   royaltiesTo: {
     name: 'LAMPS_APPLE',
     percentage: 100,
-    avatar: '🍏',
   },
   twitterUrl: 'https://twitter.com/grokify',
   websiteUrl: 'https://grokify.io',
@@ -94,13 +91,13 @@ export function TokenPage() {
           <div className="token-header-info">
             {/* Token Avatar */}
             <div className="token-avatar" style={{
-              background: 'var(--bg-tertiary)',
-              border: '1px solid var(--border-medium)',
+              background: 'linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%)',
+              border: '1px solid var(--border-accent)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-              {tokenData.emoji}
+              <Cpu size={24} color="var(--accent)" />
             </div>
 
             <div style={{ flex: 1, minWidth: 0 }}>
