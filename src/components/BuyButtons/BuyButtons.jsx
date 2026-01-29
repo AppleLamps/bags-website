@@ -34,7 +34,7 @@ export function BuyButtons() {
     <div style={{
       display: 'flex',
       flexDirection: 'column',
-      gap: '10px',
+      gap: '12px',
     }}>
       {exchanges.map((exchange, i) => {
         const IconComponent = exchange.icon
@@ -44,7 +44,7 @@ export function BuyButtons() {
             variant={exchange.primary ? 'primary' : 'secondary'}
             size="xl"
             fullWidth
-            icon={<IconComponent size={16} />}
+            icon={<IconComponent size={18} />}
             onClick={() => window.open(exchange.url, '_blank')}
           >
             {exchange.name}

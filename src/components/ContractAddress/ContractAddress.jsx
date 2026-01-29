@@ -25,7 +25,7 @@ export function ContractAddress({
       background: 'var(--bg-card)',
       border: '1px solid var(--border-subtle)',
       borderRadius: 'var(--radius-lg)',
-      padding: '14px 16px',
+      padding: '16px 18px',
       transition: 'all 0.2s ease',
     }}
     onMouseEnter={(e) => {
@@ -38,9 +38,9 @@ export function ContractAddress({
     }}>
       <code style={{
         color: 'var(--text-primary)',
-        fontSize: '14px',
+        fontSize: '16px',
         fontFamily: 'var(--font-mono)',
-        fontWeight: 500,
+        fontWeight: 600,
       }}>
         {shortAddress}
       </code>
@@ -48,22 +48,22 @@ export function ContractAddress({
       <button
         onClick={handleCopy}
         style={{
-          background: 'transparent',
-          border: 'none',
+          background: 'var(--bg-tertiary)',
+          border: '1px solid var(--border-subtle)',
           cursor: 'pointer',
-          padding: '4px',
+          padding: '8px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          borderRadius: 'var(--radius-sm)',
+          borderRadius: 'var(--radius-md)',
           transition: 'all 0.2s ease',
         }}
         title="Copy address"
       >
         {copied ? (
-          <Check size={16} color="var(--accent)" />
+          <Check size={18} color="var(--accent)" />
         ) : (
-          <Copy size={16} color="var(--text-tertiary)" />
+          <Copy size={18} color="var(--text-tertiary)" />
         )}
       </button>
     </div>

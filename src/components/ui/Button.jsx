@@ -63,23 +63,23 @@ const hoverVariants = {
 
 const sizes = {
   sm: {
-    padding: '8px 16px',
-    fontSize: '13px',
+    padding: '10px 18px',
+    fontSize: '14px',
     borderRadius: 'var(--radius-full)',
   },
   md: {
-    padding: '10px 20px',
-    fontSize: '14px',
+    padding: '12px 22px',
+    fontSize: '15px',
     borderRadius: 'var(--radius-full)',
   },
   lg: {
-    padding: '14px 24px',
-    fontSize: '14px',
+    padding: '16px 28px',
+    fontSize: '15px',
     borderRadius: 'var(--radius-full)',
   },
   xl: {
-    padding: '16px 24px',
-    fontSize: '15px',
+    padding: '18px 28px',
+    fontSize: '16px',
     borderRadius: 'var(--radius-lg)',
   },
 }

@@ -7,15 +7,15 @@ export function SocialLinks({
   websiteUrl = '#',
 }) {
   const links = [
-    { icon: <ExternalLink size={16} />, label: 'twitter', url: twitterUrl },
-    { icon: <Globe size={16} />, label: 'website', url: websiteUrl },
+    { icon: <ExternalLink size={18} />, label: 'twitter', url: twitterUrl },
+    { icon: <Globe size={18} />, label: 'website', url: websiteUrl },
   ]
 
   return (
     <div style={{
       display: 'grid',
       gridTemplateColumns: '1fr 1fr',
-      gap: '12px',
+      gap: '14px',
     }}>
       {links.map((link, i) => (
         <Button

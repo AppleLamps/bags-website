@@ -407,7 +407,7 @@ body {
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+  gap: 14px;
 }
 
 /* Photo Grid - Mobile First (2 columns) */
@@ -439,13 +439,13 @@ body {
 }
 
 .token-name {
-  font-size: 22px;
+  font-size: 24px;
 }
 
 .earnings-banner {
-  padding: 14px 16px;
+  padding: 16px 18px;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
   align-items: stretch;
 }
 
@@ -475,14 +475,14 @@ body {
 }
 
 .chart-price {
-  font-size: 24px;
+  font-size: 28px;
 }
 
 .chart-ohlc {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 4px 12px;
-  font-size: 11px;
+  gap: 6px 16px;
+  font-size: 13px;
 }
 
 .timeframe-selector {
@@ -505,14 +505,14 @@ body {
 .sidebar {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 /* Trading Activity - Mobile */
 .trading-activity-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
+  gap: 12px;
 }
 
 /* Project Updates Tabs - Mobile */
@@ -688,13 +688,13 @@ body {
   }
 
   .chart-price {
-    font-size: 28px;
+    font-size: 32px;
   }
 
   .chart-ohlc {
     display: flex;
-    gap: 16px;
-    font-size: 12px;
+    gap: 20px;
+    font-size: 14px;
   }
 
   .chart-footer {
@@ -804,7 +804,7 @@ body {
   }
 
   .chart-price {
-    font-size: 32px;
+    font-size: 38px;
   }
 
   .header-nav {
